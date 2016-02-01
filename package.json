@@ -4,7 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf -rf build",
+    "build": "npm run clean & webpack --watch --config webpack.config.js"
   },
   "keywords": [],
   "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
@@ -13,6 +14,7 @@
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
+    "rimraf": "^2.5.1",
     "webpack": "^1.12.12"
   }
 }
