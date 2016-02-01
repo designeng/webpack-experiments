@@ -1,12 +1,19 @@
-import onePageSpec from './one.page.spec';
+import oneSpec from './one.spec';
+import twoSpec from './two.spec';
 
 export default {
     $plugins: [
     ],
     test: 123,
-    onePageModule: {
+    oneModule: {
         wire: {
-            spec: onePageSpec,
+            spec: oneSpec,
+            defer: true
+        }
+    },
+    twoModule: {
+        wire: {
+            spec: twoSpec,
             defer: true
         }
     }
