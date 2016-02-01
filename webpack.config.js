@@ -1,13 +1,10 @@
 module.exports = {
     context: __dirname + '/src',
     entry: {
-        mainPage    : './main.js',
-        // pageOne     : ['./one.js', './two.js'],
-        pageOne     : ['./one.js'],
-        vendors: ['essential-wire']
+        mainPage    : './main.js'
     },
     output: {
-        filename: './build/[name].bundle.js'
+        filename: './build/bundle.js'
     },
     module: {
         loaders: [
