@@ -5,11 +5,15 @@
   "main": "webpack.config.js",
   "scripts": {
     "clean": "rimraf -rf build",
-    "build": "npm run clean & webpack --watch --config webpack.config.js"
+    "build": "npm run clean & webpack --watch --config webpack.config.js",
+    "test": "node ./build/mainPage.bundle.js"
   },
   "keywords": [],
   "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
   "license": "ISC",
+  "dependencies": {
+    "essential-wire": "git://github.com/designeng/essential-wire"
+  },
   "devDependencies": {
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",

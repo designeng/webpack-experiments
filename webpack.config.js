@@ -2,7 +2,9 @@ module.exports = {
     context: __dirname + '/src',
     entry: {
         mainPage    : './main.js',
-        pageOne     : './one.js',
+        // pageOne     : ['./one.js', './two.js'],
+        pageOne     : ['./one.js'],
+        vendors: ['essential-wire']
     },
     output: {
         filename: './build/[name].bundle.js'
