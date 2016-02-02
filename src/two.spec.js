@@ -1,7 +1,7 @@
 //---------------- createDeferredComponentPlugin -----------------
 // factory
 function createDeferredComponent(resolver, compDef, wire) {
-    setTimeout(() => resolver.resolve("abc"), 100);
+    setTimeout(() => resolver.resolve("abc"), 0);
 }
 
 const createDeferredComponentPlugin = (options) => {
