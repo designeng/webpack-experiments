@@ -1,7 +1,7 @@
 import wire     from 'essential-wire';
 import when     from 'when';
 import mainSpec from './main.spec';
-import Timer    from './timer';
+import Timer    from './utils/timer';
 
 let timer = new Timer();
 
