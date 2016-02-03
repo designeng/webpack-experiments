@@ -3,7 +3,7 @@
 ```
 npm i
 ```
-##Run
+##Run server
 ```
-npm start
+npm run server
 ```
