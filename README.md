@@ -5,5 +5,5 @@ npm i
 ```
 ##Run server
 ```
-npm run server
+npm start
 ```
