@@ -1,7 +1,4 @@
 import wireDebugPlugin      from 'essential-wire/source/debug';
-import reactComponentPlugin from './plugins/react/component';
-
-import Article from "./components/Article"
 
 //---------------- contextPlugin -----------------
 const contextPlugin = (options) => {
@@ -49,8 +46,7 @@ const anotherComponentFactory = () => {
 export default {
     $plugins: [
         wireDebugPlugin,
-        contextPlugin,
-        reactComponentPlugin
+        contextPlugin
     ],
     someComponent: {
         create: someComponentFactory,
@@ -62,10 +58,5 @@ export default {
     },
     anotherComponent: {
         create: anotherComponentFactory
-    },
-    articleReactComponent: {
-        createComponent: {
-            source: Article
-        }
     }
 }

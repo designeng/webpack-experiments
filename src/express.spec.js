@@ -12,7 +12,7 @@ export default {
         expressApplication: true,
         routeMiddleware: {
             routes: [
-                {url: '/article', component: "ARTICLE"}
+                {url: '/article', component: {$ref: 'articleReactComponent'}}
             ]
         },
         routeNotFoundMiddleware: {},

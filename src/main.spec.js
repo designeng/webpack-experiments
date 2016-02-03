@@ -1,9 +1,13 @@
 import oneSpec      from './one.spec';
 import twoSpec      from './two.spec';
-import threeSpec    from './three.spec';
+
+import reactComponentPlugin from './plugins/react/component';
+
+import Article from "./components/Article";
 
 export default {
     $plugins: [
+        reactComponentPlugin
     ],
     test: 123,
     oneModule: {
@@ -18,9 +22,10 @@ export default {
             defer: true
         }
     },
-    threeModule: {
-        wire: {
-            spec: threeSpec
+
+    articleReactComponent: {
+        createComponent: {
+            source: Article
         }
     }
 }
