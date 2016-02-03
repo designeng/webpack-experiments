@@ -4,7 +4,7 @@ module.exports = {
         mainPage    : './main.js'
     },
     output: {
-        filename: './build/bundle.js'
+        filename: './public/build/bundle.js'
     },
     module: {
         loaders: [
