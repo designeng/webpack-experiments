@@ -1,4 +1,6 @@
 import React from 'react';
+import isString from 'is-string';
+import isFunction from 'isfunction';
 
 const renderFullPage = (componentHTML) => {
     return `
@@ -23,7 +25,14 @@ function routeMiddleware(resolver, facet, wire) {
 
         routes.forEach(route => {
             target.get(route.url, function (req, res) {
-                res.status(200).end(renderFullPage(route.component));
+                let component = route.component;
+                if (isString(component)) {
+                    res.status(200).end(renderFullPage(component));
+                } else if (isFunction(component)){
+                    component().then(context => {
+                        res.status(200).end(renderFullPage(context.container));
+                    })
+                }
             });
         });
 
