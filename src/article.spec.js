@@ -6,9 +6,8 @@ export default {
         reactComponentPlugin
     ],
 
-    // TODO: createContainer facet ?
     container: {
-        createComponent: {
+        createContainer: {
             source: Article
         }
     }

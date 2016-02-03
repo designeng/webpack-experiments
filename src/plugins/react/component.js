@@ -41,7 +41,9 @@ function createComponent(resolver, compDef, wire) {
 export default function ReactComponentPlugin(options) {
     return {
         factories: {
-            createComponent
+            createComponent,
+            // alias
+            createContainer: createComponent
         },
         facets: {
             renderIn: {
