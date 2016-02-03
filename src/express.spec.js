@@ -11,8 +11,11 @@ export default {
     app: {
         expressApplication: true,
         routeMiddleware: {
-
+            routes: [
+                {url: 'article', component: "ARTICLE"}
+            ]
         },
+        routeNotFoundMiddleware: {},
         server: {
             port            : process.env.PORT || 3000,
             verbose         : true
