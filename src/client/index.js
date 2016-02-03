@@ -1,8 +1,8 @@
 import wire         from 'essential-wire';
 import { render }   from 'react-dom';
+import isFunction   from 'isfunction';
 
-import isFunction from 'isfunction';
-import clientSpec     from './client.spec';
+import clientSpec   from './client.spec';
 
 let rootElement = document.querySelector("#root");
 
