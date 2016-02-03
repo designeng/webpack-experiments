@@ -1,3 +1,7 @@
+var webpack = require('webpack');
+
+var NODE_ENV = process.env.NODE_ENV;
+
 module.exports = {
     context: __dirname + '/src',
     entry: {
@@ -16,6 +20,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.EnvironmentPlugin('NODE_ENV'),
+        new webpack.DefinePlugin({
+            LANG: JSON.stringify('ru')
+        })
     ],
     devtool: 'source-map'
 }

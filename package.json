@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "clean": "rimraf -rf public/build",
-    "build": "npm run clean & webpack --watch --config webpack.config.js",
+    "build": "npm run clean & NODE_ENV=client webpack --watch --config webpack.config.js",
     "start": "NODE_ENV=build node ./runner",
     "server": "npm run build & NODE_ENV=server node ./runner",
     "test": "node ./public/build/bundle.js"
