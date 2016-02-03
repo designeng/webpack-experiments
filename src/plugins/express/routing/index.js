@@ -1,3 +1,4 @@
+import fs from 'fs';
 import React from 'react';
 import isString from 'is-string';
 import isFunction from 'isfunction';
@@ -12,6 +13,7 @@ const renderFullPage = (componentHTML) => {
             </head>
             <body >
                 <div id="root">${componentHTML}</div>
+                <script src="/build/bundle.js"></script>
             </body>
         </html>
     `;
@@ -40,11 +42,26 @@ function routeMiddleware(resolver, facet, wire) {
     });
 }
 
+function pageBundleMiddleware(resolver, facet, wire) {
+    const target = facet.target;
+    const bundleUrl = facet.options.bundleUrl;
+    const targetFilePath = facet.options.targetFilePath;
+
+    target.get(bundleUrl, function (req, res) {
+        let result = fs.readFileSync(targetFilePath);
+        res.status(200).end(result);
+    });
+
+    resolver.resolve(target);
+}
+
 function routeNotFoundMiddleware(resolver, facet, wire) {
     const target = facet.target;
+    const template = facet.options.template;
 
     target.get("/*", function (req, res) {
-        res.status(404).end("Page not found:" + req.url);
+        let result = template? template(req.url) : "Page not found:" + req.url
+        res.status(404).end(result);
     });
 
     resolver.resolve(target);
@@ -55,6 +72,9 @@ export default function routeMiddlewarePlugin(options) {
         facets: {
             routeMiddleware: {
                 initialize: routeMiddleware
+            },
+            pageBundleMiddleware: {
+                'initialize:before': pageBundleMiddleware
             },
             routeNotFoundMiddleware: {
                 'ready:before': routeNotFoundMiddleware

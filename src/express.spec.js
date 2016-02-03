@@ -10,6 +10,10 @@ export default {
     ],
     app: {
         expressApplication: true,
+        pageBundleMiddleware: {
+            bundleUrl: '/build/bundle.js',
+            targetFilePath: './public/build/bundle.js'
+        },
         routeMiddleware: {
             routes: [
                 {url: '/article', component: {$ref: 'articleReactComponent'}}

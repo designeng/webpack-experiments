@@ -1,7 +1,7 @@
 module.exports = {
     context: __dirname + '/src',
     entry: {
-        mainPage    : './main.js'
+        client    : './client/index.js'
     },
     output: {
         filename: './public/build/bundle.js'

@@ -10,9 +10,17 @@ export default class Article extends React.Component {
         
     }
 
+    handleClick() {
+        console.log("CLICK!");
+    }
+
     render() {
+        const value = "Button";
         return (
-            <div>Article content here...</div>
+            <section>
+                <div>Article content here...</div>
+                <div><button value={value} onClick={this.handleClick} /></div>
+            </section>
         )
     }
 }

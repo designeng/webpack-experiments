@@ -7,7 +7,7 @@
     "clean": "rimraf -rf public/build",
     "build": "npm run clean & webpack --watch --config webpack.config.js",
     "start": "NODE_ENV=build node ./runner",
-    "server": "NODE_ENV=server node ./runner",
+    "server": "npm run build & NODE_ENV=server node ./runner",
     "test": "node ./public/build/bundle.js"
   },
   "keywords": [],
