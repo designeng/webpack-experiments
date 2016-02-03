@@ -34,6 +34,9 @@ const someComponentFactory = () => {
     Factory.prototype.greetAll = function() {
         console.log(this.greeting);
     }
+    Factory.prototype.logExternalReactComponent = function(component) {
+        console.log("ExternalReactComponent:", component);
+    }
     return new Factory();
 }
 
@@ -53,19 +56,16 @@ export default {
         create: someComponentFactory,
         ready: {
             onReadySomeComponent: ["one", "two", "three"],
-            greetAll: {}
+            greetAll: {},
+            logExternalReactComponent: {$ref: 'articleReactComponent'}
         }
     },
     anotherComponent: {
         create: anotherComponentFactory
     },
-    article: {
+    articleReactComponent: {
         createComponent: {
-            // source: "./components/Article"
             source: Article
-        },
-        // renderIn: {
-        //     selector: "#root"
-        // }
+        }
     }
 }
