@@ -18,7 +18,7 @@ export default {
             routes: [
                 {   
                     url: '/article', 
-                    component: {$ref: 'articleReactComponent'},
+                    component: {$ref: 'articleContainer'},
                     title: 'Isomorphic article page'
                 }
             ]

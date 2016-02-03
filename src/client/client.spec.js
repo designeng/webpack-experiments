@@ -6,7 +6,7 @@ export default {
 
     ],
 
-    articleReactComponent: {
+    articleContainer: {
         wire: {
             spec: articleSpec,
             defer: true

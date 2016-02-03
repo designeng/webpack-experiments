@@ -53,7 +53,7 @@ export default {
         ready: {
             onReadySomeComponent: ["one", "two", "three"],
             greetAll: {},
-            logExternalReactComponent: {$ref: 'articleReactComponent'}
+            logExternalReactComponent: {$ref: 'articleContainer'}
         }
     },
     anotherComponent: {
