@@ -72,14 +72,14 @@ function routeNotFoundMiddleware(resolver, facet, wire) {
 export default function routeMiddlewarePlugin(options) {
     return {
         facets: {
-            routeMiddleware: {
-                initialize: routeMiddleware
-            },
             pageBundleMiddleware: {
                 'initialize:before': pageBundleMiddleware
             },
+            routeMiddleware: {
+                initialize: routeMiddleware
+            },
             routeNotFoundMiddleware: {
-                'ready:before': routeNotFoundMiddleware
+                'initialize:after': routeNotFoundMiddleware
             }
         }
     }
