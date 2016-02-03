@@ -16,7 +16,11 @@ export default {
         },
         routeMiddleware: {
             routes: [
-                {url: '/article', component: {$ref: 'articleReactComponent'}}
+                {   
+                    url: '/article', 
+                    component: {$ref: 'articleReactComponent'},
+                    title: 'Isomorphic article page'
+                }
             ]
         },
         routeNotFoundMiddleware: {},

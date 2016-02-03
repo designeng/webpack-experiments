@@ -3,15 +3,15 @@ import React from 'react';
 import isString from 'is-string';
 import isFunction from 'isfunction';
 
-const renderFullPage = (componentHTML) => {
+function renderFullPage(componentHTML, title) {
     return `
         <!doctype html>
         <html>
             <head>
                 <meta charset="utf-8">
-                <title>Isomorphic</title>
+                <title>${title}</title>
             </head>
-            <body >
+            <body>
                 <div id="root">${componentHTML}</div>
                 <script src="/build/bundle.js"></script>
             </body>
@@ -28,11 +28,13 @@ function routeMiddleware(resolver, facet, wire) {
         routes.forEach(route => {
             target.get(route.url, function (req, res) {
                 let component = route.component;
+                let title = route.title;
+
                 if (isString(component)) {
-                    res.status(200).end(renderFullPage(component));
+                    res.status(200).end(renderFullPage(component, title));
                 } else if (isFunction(component)){
                     component().then(context => {
-                        res.status(200).end(renderFullPage(context.container));
+                        res.status(200).end(renderFullPage(context.container, title));
                     })
                 }
             });
