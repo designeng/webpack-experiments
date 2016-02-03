@@ -1,5 +1,4 @@
 import wire         from 'essential-wire';
-import when         from 'when';
 import mainSpec     from './main.spec';
 
 import expressSpec  from './express.spec';
