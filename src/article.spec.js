@@ -6,6 +6,8 @@ export default {
         reactComponentPlugin
     ],
 
+    // to be resolved in routeMiddlewarePlugin/routeMiddleware facet the root container
+    // should be named 'container' in specification:
     container: {
         createContainer: {
             source: Article
