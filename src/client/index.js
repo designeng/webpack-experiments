@@ -6,9 +6,6 @@ import clientSpec     from './client.spec';
 
 let rootElement = document.querySelector("#root");
 
-
-console.log(">>>>>>>", process.env.NODE_ENV);
-
 wire(clientSpec).then(context => {
     let rootComponent = context.articleReactComponent
     if (isFunction(rootComponent)){
