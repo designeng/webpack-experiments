@@ -1,14 +1,14 @@
 var webpack = require('webpack');
 
-var NODE_ENV = process.env.NODE_ENV;
+process.env = {COMPILATION_MODE: 'client'}
 
 module.exports = {
-    context: __dirname + '/src',
+    context: __dirname + '/../../../../client',
     entry: {
-        client    : './client/index.js'
+        client    : './index.js'
     },
     output: {
-        filename: './public/build/bundle.js'
+        filename: __dirname + '/../../../../../public/build/bundle.js'
     },
     module: {
         loaders: [
@@ -20,10 +20,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.EnvironmentPlugin('NODE_ENV'),
-        new webpack.DefinePlugin({
-            LANG: JSON.stringify('ru')
-        })
+        new webpack.EnvironmentPlugin('COMPILATION_MODE')
     ],
     devtool: 'source-map'
 }

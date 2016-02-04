@@ -2,21 +2,6 @@ import React from 'react';
 import isString from 'is-string';
 import ReactDOMServer from 'react-dom/server';
 
-// facets
-function renderInFacet(resolver, facet, wire) {
-    let target = facet.target;
-    let selector = facet.options.selector;
-    let element;
-
-    // TODO: strange... process.browser is true in node.js running
-    console.log("LOG PROCESS:::::::::::", process, process.browser);
-
-    if (process.browser) {
-        element = document.querySelector(selector);    }
-
-    resolver.resolve(target);
-}
-
 // factories
 function createComponent(resolver, compDef, wire) {
     let component;
@@ -30,9 +15,11 @@ function createComponent(resolver, compDef, wire) {
         resolver.resolve(component);
     } else {
         component = React.createElement(source);
-        if (process.env.NODE_ENV == 'server') {
+
+        // to correlate with ad-hoc webpack compilation (see plugins/express/routing/config/webpack.page.config.js)
+        if (process.env.COMPILATION_MODE == 'server') {
             resolver.resolve(ReactDOMServer.renderToString(component));
-        } else if (process.env.NODE_ENV == 'client') {
+        } else if (process.env.COMPILATION_MODE == 'client') {
             resolver.resolve(component);
         }
     }
@@ -44,11 +31,6 @@ export default function ReactComponentPlugin(options) {
             createComponent,
             // alias
             createContainer: createComponent
-        },
-        facets: {
-            renderIn: {
-                ready: renderInFacet
-            }
         }
     }
 }

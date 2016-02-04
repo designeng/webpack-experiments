@@ -12,13 +12,13 @@ import config       from "./config/webpack.page.config";
 const compiler = webpack(config);
 
 function compile() {
-    return when.promise((resolve, reject, notify) =>{
+    return when.promise((resolve, reject, notify) => {
         compiler.run((err, stats) => {
             if (err) {
                 console.error(`COMPILATION ERROR: ${err}`);
                 reject(err);
             } else {
-                resolve("COMPILED");
+                resolve("COMPILED::: " + stats);
             }
         });
     })
@@ -29,17 +29,24 @@ function pageBundleMiddleware(resolver, facet, wire) {
     const bundleUrl = facet.options.bundleUrl;
     const targetFilePath = facet.options.targetFilePath;
 
-    // let result = fs.readFileSync(targetFilePath);
-
-    // TODO: does not work: error, file does not exist
-    fs.readFile(targetFilePath, (err, result) => {
-        if (err) {
-            console.log(chalk.blue(err));
-        };
-
-        target.get(bundleUrl, (req, res) => {
-            res.status(200).end(result);
-        });
+    target.get(bundleUrl, (req, res) => {
+        let count = 0;
+        // 5 sec is enouph for compilation
+        let maxCount = 50;
+        let interval = setInterval(() => {
+            if (count < maxCount) {
+                fs.stat(targetFilePath, (err, stats) => {
+                    if (stats && stats.isFile()) {
+                        clearInterval(interval);
+                        let result = fs.readFileSync(targetFilePath);
+                        res.status(200).end(result);
+                    }
+                });
+            } else {
+                clearInterval(interval);
+            }
+            count++;
+        }, 100);
     });
 
     resolver.resolve(target);
@@ -77,7 +84,6 @@ function routeMiddleware(resolver, facet, wire) {
                 } else if (isFunction(component)){
                     component().then(context => {
                         when(compile()).then(compilationResult => {
-                            console.log(`COMPILATION RESULT::::::: ` + chalk.blue(compilationResult));
                             res.status(200).end(renderFullPage(context.container, title));
                         })
                     })
