@@ -3,6 +3,48 @@ import React from 'react';
 import isString from 'is-string';
 import isFunction from 'isfunction';
 
+// page webpack compilation
+import webpack      from "webpack";
+import when         from "when";
+import chalk        from "chalk";
+import config       from "./config/webpack.page.config";
+
+const compiler = webpack(config);
+
+function compile() {
+    return when.promise((resolve, reject, notify) =>{
+        compiler.run((err, stats) => {
+            if (err) {
+                console.error(`COMPILATION ERROR: ${err}`);
+                reject(err);
+            } else {
+                resolve("COMPILED");
+            }
+        });
+    })
+}
+
+function pageBundleMiddleware(resolver, facet, wire) {
+    const target = facet.target;
+    const bundleUrl = facet.options.bundleUrl;
+    const targetFilePath = facet.options.targetFilePath;
+
+    // let result = fs.readFileSync(targetFilePath);
+
+    // TODO: does not work: error, file does not exist
+    fs.readFile(targetFilePath, (err, result) => {
+        if (err) {
+            console.log(chalk.blue(err));
+        };
+
+        target.get(bundleUrl, (req, res) => {
+            res.status(200).end(result);
+        });
+    });
+
+    resolver.resolve(target);
+}
+
 function renderFullPage(componentHTML, title) {
     return `
         <!doctype html>
@@ -13,7 +55,7 @@ function renderFullPage(componentHTML, title) {
             </head>
             <body>
                 <div id="root">${componentHTML}</div>
-                <script src="/build/bundle.js"></script>
+                <script async src="/build/bundle.js"></script>
             </body>
         </html>
     `;
@@ -34,7 +76,10 @@ function routeMiddleware(resolver, facet, wire) {
                     res.status(200).end(renderFullPage(component, title));
                 } else if (isFunction(component)){
                     component().then(context => {
-                        res.status(200).end(renderFullPage(context.container, title));
+                        when(compile()).then(compilationResult => {
+                            console.log(`COMPILATION RESULT::::::: ` + chalk.blue(compilationResult));
+                            res.status(200).end(renderFullPage(context.container, title));
+                        })
                     })
                 }
             });
@@ -42,19 +87,6 @@ function routeMiddleware(resolver, facet, wire) {
 
         resolver.resolve(target);
     });
-}
-
-function pageBundleMiddleware(resolver, facet, wire) {
-    const target = facet.target;
-    const bundleUrl = facet.options.bundleUrl;
-    const targetFilePath = facet.options.targetFilePath;
-
-    target.get(bundleUrl, function (req, res) {
-        let result = fs.readFileSync(targetFilePath);
-        res.status(200).end(result);
-    });
-
-    resolver.resolve(target);
 }
 
 function routeNotFoundMiddleware(resolver, facet, wire) {
@@ -73,10 +105,10 @@ export default function routeMiddlewarePlugin(options) {
     return {
         facets: {
             pageBundleMiddleware: {
-                'initialize:before': pageBundleMiddleware
+                'initialize': pageBundleMiddleware
             },
             routeMiddleware: {
-                initialize: routeMiddleware
+                'initialize:before': routeMiddleware
             },
             routeNotFoundMiddleware: {
                 'initialize:after': routeNotFoundMiddleware
