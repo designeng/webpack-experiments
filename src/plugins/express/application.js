@@ -14,14 +14,6 @@ function startExpressServerFacet(resolver, facet, wire) {
     resolver.resolve(target);
 }
 
-// TODO: move to expressStaticMiddlewarePlugin ?
-function staticFacet(resolver, facet, wire) {
-    const dir = facet.options.dir;
-    let target = facet.target;
-    target.use(express.static(dir));
-    resolver.resolve(target);
-}
-
 // factories
 function expressApplication(resolver, compDef, wire) {
     if (!compDef.options) {
@@ -37,9 +29,6 @@ export default function ExpressAppPlugin(options) {
             expressApplication
         },
         facets: {
-            static: {
-                initialize: staticFacet
-            },
             server: {
                 ready: startExpressServerFacet
             }

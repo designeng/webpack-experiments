@@ -4,16 +4,12 @@ import expressRoutingMiddlewarePlugin from './plugins/express/routing';
 
 export default {
     $plugins: [
-        // wireDebugPlugin,
+        wireDebugPlugin,
         expressAppPlugin,
         expressRoutingMiddlewarePlugin
     ],
     app: {
         expressApplication: true,
-        pageBundleMiddleware: {
-            bundleUrl: '/build/bundle.js',
-            targetFilePath: './public/build/bundle.js'
-        },
         routeMiddleware: {
             routes: [
                 {   
@@ -23,7 +19,7 @@ export default {
                 }
             ]
         },
-        routeNotFoundMiddleware: {},
+        // routeNotFoundMiddleware: {},
         server: {
             port            : process.env.PORT || 3000,
             verbose         : true
