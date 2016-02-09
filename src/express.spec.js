@@ -14,8 +14,8 @@ export default {
             routes: [
                 {   
                     url: '/article', 
-                    component: {$ref: 'articleContainer'},
-                    title: 'Isomorphic article page'
+                    component: {$ref: 'todoContainer'},
+                    title: 'Isomorphic page'
                 }
             ]
         },

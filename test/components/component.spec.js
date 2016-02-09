@@ -34,11 +34,15 @@ describe('components',  () => {
         wire({
             $plugins: [
                 wireDebugPlugin,
+                reactComponentPlugin
             ],
 
             Header: {
                 createComponent: {
-                    source: Header
+                    source: Header,
+                    props: {
+                        addTodo: () => {}
+                    }
                 }
             }
         })
@@ -52,6 +56,12 @@ describe('components',  () => {
     beforeEach(before);
 
     it('Header ok',  (done) => {
+        expect(rootContext.Header).to.be.ok;
+        done();
+    });
+
+    it('Header props: addTodo',  (done) => {
+        console.log("rootContext.Header:::", rootContext.Header);
         expect(rootContext.Header).to.be.ok;
         done();
     });

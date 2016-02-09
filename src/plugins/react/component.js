@@ -8,14 +8,20 @@ function createComponent(resolver, compDef, wire) {
     if (!compDef.options.source) {
         throw new Error("source options should be specified!");
     }
-    const source = compDef.options.source;
+
+    const {
+        source,
+        props
+    } = compDef.options;
 
     if (isString(source)) {
         component = require(source);
         resolver.resolve(component);
     } else {
-        component = React.createElement(source);
+        console.log("Object.assign:::", Object.assign);
+        component = React.createElement(source, Object.assign({}, props));
 
+        console.log("process.env.NODE_ENV:::", process.env.NODE_ENV);
         // to correlate with ad-hoc webpack compilation (see plugins/express/routing/config/webpack.page.config.js)
         if (process.env.NODE_ENV == 'server') {
             resolver.resolve(ReactDOMServer.renderToString(component));
