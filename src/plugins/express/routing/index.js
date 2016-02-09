@@ -44,14 +44,15 @@ function routeMiddleware(resolver, facet, wire) {
     });
 }
 
-function pageBundleMiddleware(resolver, facet, wire) {
+function pageScriptsMiddleware(resolver, facet, wire) {
     const target = facet.target;
-    const bundleUrl = facet.options.bundleUrl;
-    const targetFilePath = facet.options.targetFilePath;
+    const scripts = facet.options.scripts;
 
-    target.get(bundleUrl, function (req, res) {
-        let result = fs.readFileSync(targetFilePath);
-        res.status(200).end(result);
+    scripts.forEach(item => {
+        target.get(item.url, function (req, res) {
+            let result = fs.readFileSync(item.path);
+            res.status(200).end(result);
+        });
     });
 
     resolver.resolve(target);
@@ -72,8 +73,8 @@ function routeNotFoundMiddleware(resolver, facet, wire) {
 export default function routeMiddlewarePlugin(options) {
     return {
         facets: {
-            pageBundleMiddleware: {
-                'initialize:before': pageBundleMiddleware
+            pageScriptsMiddleware: {
+                'initialize:before': pageScriptsMiddleware
             },
             routeMiddleware: {
                 initialize: routeMiddleware

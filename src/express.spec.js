@@ -19,9 +19,10 @@ export default {
                 }
             ]
         },
-        pageBundleMiddleware: {
-            bundleUrl: '/build/bundle.js',
-            targetFilePath: './public/build/bundle.js'
+        pageScriptsMiddleware: {
+            scripts: [
+                {url: '/build/bundle.js', path: './public/build/bundle.js'}
+            ]
         },
         routeNotFoundMiddleware: {},
         server: {
