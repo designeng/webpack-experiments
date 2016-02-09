@@ -19,7 +19,11 @@ export default {
                 }
             ]
         },
-        // routeNotFoundMiddleware: {},
+        pageBundleMiddleware: {
+            bundleUrl: '/build/bundle.js',
+            targetFilePath: './public/build/bundle.js'
+        },
+        routeNotFoundMiddleware: {},
         server: {
             port            : process.env.PORT || 3000,
             verbose         : true
