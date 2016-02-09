@@ -61,8 +61,7 @@ describe('components',  () => {
     });
 
     it('Header props: addTodo',  (done) => {
-        console.log("rootContext.Header:::", rootContext.Header);
-        expect(rootContext.Header).to.be.ok;
+        expect(rootContext.Header.props.addTodo).to.be.ok;
         done();
     });
 

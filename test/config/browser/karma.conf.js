@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 
+process.env.NODE_ENV = 'client';
+
 module.exports = function (config) {
   config.set({
     browsers: [ 'PhantomJS' ],
@@ -43,6 +45,7 @@ module.exports = function (config) {
       },
       plugins: [
         new webpack.IgnorePlugin(/\.json$/),
+        new webpack.EnvironmentPlugin('NODE_ENV'),
         new webpack.NoErrorsPlugin()
       ]
     }

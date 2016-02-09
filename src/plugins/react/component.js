@@ -1,6 +1,7 @@
 import React from 'react';
 import isString from 'is-string';
 import ReactDOMServer from 'react-dom/server';
+import objectAssign from 'object-assign';
 
 // factories
 function createComponent(resolver, compDef, wire) {
@@ -18,10 +19,8 @@ function createComponent(resolver, compDef, wire) {
         component = require(source);
         resolver.resolve(component);
     } else {
-        console.log("Object.assign:::", Object.assign);
-        component = React.createElement(source, Object.assign({}, props));
+        component = React.createElement(source, objectAssign({}, props));
 
-        console.log("process.env.NODE_ENV:::", process.env.NODE_ENV);
         // to correlate with ad-hoc webpack compilation (see plugins/express/routing/config/webpack.page.config.js)
         if (process.env.NODE_ENV == 'server') {
             resolver.resolve(ReactDOMServer.renderToString(component));
