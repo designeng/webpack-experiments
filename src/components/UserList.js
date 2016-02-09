@@ -12,7 +12,7 @@ export default class UserList extends React.Component {
 
     renderUsers(users) {
         return users.map(user => {
-            return <li>{user.name}</li>
+            return <li key={user.key}>{user.name}</li>
         })
     }
 

@@ -6,13 +6,13 @@ export default {
         reactComponentPlugin
     ],
 
-    UserList: {
+    container: {
         createComponent: {
             source: UserList,
             props: {
                 users: [
-                    {name: "one"},
-                    {name: "two"}
+                    {name: "one", key: 0},
+                    {name: "two", key: 1}
                 ]
             }
         }

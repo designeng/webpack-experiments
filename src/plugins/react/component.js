@@ -23,6 +23,8 @@ function createComponent(resolver, compDef, wire) {
         } else {
             component = React.createElement(source, objectAssign({}, props));
 
+            console.log("component::::", component);
+
             // to correlate with ad-hoc webpack compilation (see plugins/express/routing/config/webpack.page.config.js)
             if (process.env.NODE_ENV == 'server') {
                 resolver.resolve(ReactDOMServer.renderToString(component));
