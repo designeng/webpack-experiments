@@ -37,11 +37,13 @@ describe('components',  () => {
                 reactComponentPlugin
             ],
 
+            addTodo: () => {},
+
             Header: {
                 createComponent: {
                     source: Header,
                     props: {
-                        addTodo: () => {}
+                        addTodo: {$ref: 'addTodo'}
                     }
                 }
             }
@@ -62,6 +64,11 @@ describe('components',  () => {
 
     it('Header props: addTodo',  (done) => {
         expect(rootContext.Header.props.addTodo).to.be.ok;
+        done();
+    });
+
+    it('Header props: addTodo: function',  (done) => {
+        expect(rootContext.Header.props.addTodo).to.be.an('function');
         done();
     });
 
