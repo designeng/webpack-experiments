@@ -37,7 +37,9 @@ describe('components',  () => {
                 reactComponentPlugin
             ],
 
-            addTodo: () => {},
+            addTodo: (text) => {
+                return { type: types.ADD_TODO, text }
+            },
 
             Header: {
                 createComponent: {
