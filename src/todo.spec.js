@@ -1,10 +1,16 @@
 import reactComponentPlugin from './plugins/react/component';
-import Article from "./components/Article";
+import Header from "./components/Header";
 
 export default {
     $plugins: [
         reactComponentPlugin
     ],
+
+    Header: {
+        createComponent: {
+            source: Header
+        }
+    }
 
     // to be resolved in routeMiddlewarePlugin/routeMiddleware facet the root container
     // should be named 'container' in specification:
@@ -13,4 +19,5 @@ export default {
             source: Article
         }
     }
+
 }

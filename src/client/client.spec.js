@@ -1,14 +1,14 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
-import articleSpec      from './../article.spec';
+import todoSpec      from './../todo.spec';
 
 export default {
     $plugins: [
 
     ],
 
-    articleContainer: {
+    TodoContainer: {
         wire: {
-            spec: articleSpec,
+            spec: todoSpec,
             defer: true
         }
     }
