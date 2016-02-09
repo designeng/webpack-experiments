@@ -1,14 +1,14 @@
-import wireDebugPlugin  from 'essential-wire/source/debug';
-import todoSpec      from './todo.spec';
+import wireDebugPlugin from 'essential-wire/source/debug';
+import chatSpec      from './chat.spec';
 
 export default {
     $plugins: [
-        wireDebugPlugin
+
     ],
 
-    todoContainer: {
+    ChatContainer: {
         wire: {
-            spec: todoSpec,
+            spec: chatSpec,
             defer: true
         }
     }

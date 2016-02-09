@@ -13,9 +13,9 @@ export default {
         routeMiddleware: {
             routes: [
                 {   
-                    url: '/article', 
-                    component: {$ref: 'todoContainer'},
-                    title: 'Isomorphic page'
+                    url: '/chat', 
+                    component: {$ref: 'ChatContainer'},
+                    title: 'Chat page'
                 }
             ]
         },
