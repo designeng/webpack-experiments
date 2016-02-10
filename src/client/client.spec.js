@@ -3,7 +3,7 @@ import chatSpec      from './../chat.spec';
 
 export default {
     $plugins: [
-
+        wireDebugPlugin
     ],
 
     ChatContainer: {

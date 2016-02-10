@@ -22,8 +22,6 @@ function createExpressApplication(resolver, compDef, wire) {
 
     const app = express();
 
-    app.use(express.static('./public'));
-
     resolver.resolve(app);
 }
 
