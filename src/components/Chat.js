@@ -8,7 +8,9 @@ export default class Chat extends React.Component {
 
     componentDidMount() {
         this.socket = io(this.props.socketIoHost);
-        this.textarea = document.getElementById("messageField")
+        this.textarea = document.getElementById("messageField");
+
+        console.log("messagesCallback .......", this.props.messagesCallback);
     }
 
     handleClick() {

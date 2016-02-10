@@ -1,9 +1,12 @@
 import fs from 'fs';
 import React from 'react';
-import isString from 'is-string';
+// import isString from 'is-string';
+
 import isFunction from 'isfunction';
 
-function renderFullPage(componentHTML, title) {
+import NoopComponent    from './../../../utils/NoopComponent';
+
+function renderFullPage(component, title) {
     return `
         <!doctype html>
         <html>
@@ -12,7 +15,7 @@ function renderFullPage(componentHTML, title) {
                 <title>${title}</title>
             </head>
             <body>
-                <div id="root">${componentHTML}</div>
+                <div id="root">${component.toHtml()}</div>
                 <script src="/socket.io/socket.io.js"></script>
                 <script src="/build/bundle.js"></script>
             </body>
@@ -31,7 +34,7 @@ function routeMiddleware(resolver, facet, wire) {
                 let component = route.component;
                 let title = route.title;
 
-                if (isString(component)) {
+                if (component instanceof NoopComponent) {
                     res.status(200).end(renderFullPage(component, title));
                 } else if (isFunction(component)){
                     component().then(context => {

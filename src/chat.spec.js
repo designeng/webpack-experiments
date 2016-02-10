@@ -17,7 +17,8 @@ export default {
         createComponent: {
             source: Chat,
             props: {
-                socketIoHost: config.host
+                socketIoHost: config.host,
+                messagesCallback: res => { return res }
             }
         }
     },
@@ -25,11 +26,11 @@ export default {
     // noop
     invokeAfterResponse: (res) => {console.log("RESULT:", res)},
 
-    model: {
+    messagesModel: {
         createFalcorModel: {
             sourcePath: 'http://localhost:3000/messages/model.json',
             route: 'messages',
-            invokeAfterResponse: {$ref: 'invokeAfterResponse'}
+            invokeAfterResponse: {$ref: 'container.props.messagesCallback'}
         }
     }
 
