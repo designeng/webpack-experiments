@@ -10,10 +10,13 @@ function renderFullPage(componentHTML, title) {
             <head>
                 <meta charset="utf-8">
                 <title>${title}</title>
+                <script src="/socket.io/socket.io.js"></script>
             </head>
             <body>
                 <div id="root">${componentHTML}</div>
-                <script src="/socket.io/socket.io.js"></script>
+                <script>
+                    console.log("IO:::", io);
+                </script>
                 <script src="/build/bundle.js"></script>
             </body>
         </html>

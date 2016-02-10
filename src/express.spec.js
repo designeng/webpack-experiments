@@ -15,7 +15,9 @@ export default {
         socketIOPlugin
     ],
     app: {
-        expressApplication: true,
+        createExpressApplication: {
+
+        },
         falcorMiddleware: {
             api: [
                 {apiPath: '/users/model.json', router: UsersRouter}
@@ -42,11 +44,12 @@ export default {
         }
     },
 
-    socketIo: {
-        createSocketIO: {
-        },
-        connectToServer: {
-            server: {$ref: 'app'}
-        }
-    }
+    // socketIo: {
+    //     createSocketIO: {
+            
+    //     },
+    //     // connectToServer: {
+    //     //     server: {$ref: 'app'}
+    //     // }
+    // }
 }
