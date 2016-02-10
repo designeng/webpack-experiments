@@ -2,6 +2,7 @@ import React from 'react';
 import isString from 'is-string';
 import ReactDOMServer from 'react-dom/server';
 import objectAssign from 'object-assign';
+import SimpleComponent from './../../utils/SimpleComponent';
 
 // factories
 function createComponent(resolver, compDef, wire) {
@@ -21,12 +22,22 @@ function createComponent(resolver, compDef, wire) {
             component = require(source);
             resolver.resolve(component);
         } else {
-            component = React.createElement(source, objectAssign({}, props));
+            if(source.prototype instanceof React.Component) {
+                component = React.createElement(source, objectAssign({}, props));
 
-            if (process.env.NODE_ENV == 'server') {
-                resolver.resolve(ReactDOMServer.renderToString(component));
-            } else if (process.env.NODE_ENV == 'client') {
-                resolver.resolve(component);
+                if (process.env.NODE_ENV == 'server') {
+                    resolver.resolve(ReactDOMServer.renderToString(component));
+                } else if (process.env.NODE_ENV == 'client') {
+                    resolver.resolve(component);
+                }
+
+            // another component type (noop e.g.)
+            } else if (source.prototype instanceof SimpleComponent) {
+                if (process.env.NODE_ENV == 'server') {
+                    resolver.resolve(component.getHtml());
+                } else if (process.env.NODE_ENV == 'client') {
+                    resolver.resolve(component);
+                }
             }
         }
     });
