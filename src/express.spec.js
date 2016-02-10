@@ -2,6 +2,7 @@ import wireDebugPlugin      from 'essential-wire/source/debug';
 import expressAppPlugin     from './plugins/express/application';
 import expressRoutingMiddlewarePlugin from './plugins/express/routing';
 import expressFalcorPlugin  from './plugins/express/falcor/middleware';
+import socketIOPlugin       from './plugins/express/socket';
 
 import UsersRouter          from './api/falcor/routers/users';
 
@@ -10,7 +11,8 @@ export default {
         wireDebugPlugin,
         expressAppPlugin,
         expressRoutingMiddlewarePlugin,
-        expressFalcorPlugin
+        expressFalcorPlugin,
+        socketIOPlugin
     ],
     app: {
         expressApplication: true,
@@ -34,10 +36,15 @@ export default {
             ]
         },
         routeNotFoundMiddleware: {},
-        httpServerWrapper: {},
         server: {
             port            : process.env.PORT || 3000,
             verbose         : true
+        }
+    },
+
+    socketIo: {
+        createSocketIO: {
+            basedOnServer: {$ref: 'app'}
         }
     }
 }
