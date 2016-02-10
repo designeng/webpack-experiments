@@ -3,7 +3,6 @@ import React from 'react';
 import isString from 'is-string';
 import isFunction from 'isfunction';
 
-// <div id="root">${componentHTML}</div>
 function renderFullPage(componentHTML, title) {
     return `
         <!doctype html>
@@ -13,7 +12,7 @@ function renderFullPage(componentHTML, title) {
                 <title>${title}</title>
             </head>
             <body>
-                <div id="root"></div>
+                <div id="root">${componentHTML}</div>
                 <script src="/socket.io/socket.io.js"></script>
                 <script src="/build/bundle.js"></script>
             </body>
