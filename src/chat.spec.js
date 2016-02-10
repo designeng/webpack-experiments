@@ -19,10 +19,14 @@ export default {
             props: {
                 socketIoHost: config.host
             }
-        },
-        addFalcorModel: {
+        }
+    },
+
+    model: {
+        createFalcorModel: {
             sourcePath: 'http://localhost:3000/users/model.json',
-            route: 'users'
+            route: 'users',
+            invokeAfterResponse: () => {}
         }
     }
 
