@@ -1,6 +1,6 @@
 import wireDebugPlugin      from 'essential-wire/source/debug';
 import expressAppPlugin     from './plugins/express/application';
-import expressRoutingMiddlewarePlugin from './plugins/express/routing';
+import expressRoutingPlugin from './plugins/express/routing';
 import expressFalcorPlugin  from './plugins/express/falcor/middleware';
 import socketIOPlugin       from './plugins/express/socket';
 
@@ -10,14 +10,12 @@ export default {
     $plugins: [
         wireDebugPlugin,
         expressAppPlugin,
-        expressRoutingMiddlewarePlugin,
+        expressRoutingPlugin,
         expressFalcorPlugin,
         socketIOPlugin
     ],
     app: {
-        createExpressApplication: {
-
-        },
+        createExpressApplication: true,
         falcorMiddleware: {
             api: [
                 {apiPath: '/users/model.json', router: UsersRouter}
@@ -37,19 +35,15 @@ export default {
                 {url: '/build/bundle.js', path: './public/build/bundle.js'}
             ]
         },
-        routeNotFoundMiddleware: {},
-        server: {
+        routeNotFoundMiddleware: {}
+    },
+
+    // socketIo server will be started upon express application:
+    socketIo: {
+        createSocketIOServer: {
+            app: {$ref: 'app'},
             port            : process.env.PORT || 3000,
             verbose         : true
         }
-    },
-
-    // socketIo: {
-    //     createSocketIO: {
-            
-    //     },
-    //     // connectToServer: {
-    //     //     server: {$ref: 'app'}
-    //     // }
-    // }
+    }
 }
