@@ -18,6 +18,9 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "essential-wire": "git://github.com/designeng/essential-wire",
+    "falcor": "^0.1.16",
+    "falcor-express": "^0.1.2",
+    "falcor-router": "^0.2.12",
     "is-string": "^1.0.4",
     "isfunction": "0.0.6",
     "object-assign": "^4.0.1",
