@@ -5,6 +5,7 @@ import expressFalcorPlugin  from './plugins/express/falcor/middleware';
 import socketIOPlugin       from './plugins/express/socket';
 
 import UsersRouter          from './api/falcor/routers/users';
+import MessagesRouter       from './api/falcor/routers/messages';
 
 export default {
     $plugins: [
@@ -18,7 +19,8 @@ export default {
         createExpressApplication: true,
         falcorMiddleware: {
             api: [
-                {apiPath: '/users/model.json', router: UsersRouter}
+                {apiPath: '/users/model.json', router: UsersRouter},
+                {apiPath: '/messages/model.json', router: MessagesRouter}
             ]
         },
         routeMiddleware: {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class UserList extends React.Component {
+export default class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {users: [{name: 'one', key: 1}]}
@@ -13,7 +13,7 @@ export default class UserList extends React.Component {
 
     handleClick() {
         let message = this.textarea.value
-        this.socket.emit('chat_click', { my: message });
+        this.socket.emit('chat_click', {message: message});
         console.log("CLICK", message);
     }
 

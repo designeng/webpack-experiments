@@ -2,7 +2,7 @@ import wireDebugPlugin      from 'essential-wire/source/debug';
 import reactComponentPlugin from './plugins/react/component';
 import falcorModelPlugin    from './plugins/falcor/model';
 
-import UserList from "./components/UserList";
+import Chat from "./components/Chat";
 
 import config from "./config"
 
@@ -15,7 +15,7 @@ export default {
 
     container: {
         createComponent: {
-            source: UserList,
+            source: Chat,
             props: {
                 socketIoHost: config.host
             }
@@ -27,8 +27,8 @@ export default {
 
     model: {
         createFalcorModel: {
-            sourcePath: 'http://localhost:3000/users/model.json',
-            route: 'users',
+            sourcePath: 'http://localhost:3000/messages/model.json',
+            route: 'messages',
             invokeAfterResponse: {$ref: 'invokeAfterResponse'}
         }
     }
