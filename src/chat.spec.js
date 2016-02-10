@@ -22,11 +22,14 @@ export default {
         }
     },
 
+    // noop
+    invokeAfterResponse: (res) => {console.log("RESULT:", res)},
+
     model: {
         createFalcorModel: {
             sourcePath: 'http://localhost:3000/users/model.json',
             route: 'users',
-            invokeAfterResponse: () => {}
+            invokeAfterResponse: {$ref: 'invokeAfterResponse'}
         }
     }
 

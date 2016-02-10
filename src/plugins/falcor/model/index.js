@@ -1,4 +1,3 @@
-// import meld from "meld";
 import Falcor from "falcor";
 import FalcorDataSource from 'falcor-http-datasource';
 
@@ -9,27 +8,24 @@ function invariant(response) {
 }
 
 function createFalcorModel(resolver, compDef, wire) {
-    const {
+    wire(compDef.options).then(({
         sourcePath,
         route,
         invokeAfterResponse
-    } = compDef.options;
+    }) => {
 
-    const model = new Falcor.Model({
-        source: new FalcorDataSource(sourcePath)
+        const model = new Falcor.Model({
+            source: new FalcorDataSource(sourcePath)
+        });
+
+        model.getValue([route])
+            .then(
+                invokeAfterResponse,
+                error => console.log("ERROR [addFalcorModel]: ", error)
+            );
+
+        resolver.resolve(model);
     });
-
-    // meld.after(null, invariant, function(res) {
-    //     console.log("RES::::", res);
-    // });
-
-    model.getValue([route])
-        .then(
-            invariant,
-            error => console.log("ERROR [addFalcorModel]: ", error)
-        );
-
-    resolver.resolve(model);
 }
 
 export default function FalcorModelPlugin(options) {
