@@ -25,7 +25,7 @@ export default {
             }
         },
         addFalcorModel: {
-            sourcePath: '/users/model.json',
+            sourcePath: 'http://localhost:3000/users/model.json',
             route: 'users'
         }
     }

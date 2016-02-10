@@ -18,7 +18,7 @@ function addFalcorModel(resolver, facet, wire) {
         .then(
             response => {
                 console.log("target:::::", target, response, target.state);
-                // target.setState({ [route]: response });
+                target.setState({ [route]: response });
             },
             error => console.log("ERROR [addFalcorModel]: ", error)
         );
@@ -30,7 +30,7 @@ export default function FalcorModelPlugin(options) {
     return {
         facets: {
             addFalcorModel: {
-                initialize: addFalcorModel
+                ready: addFalcorModel
             }
         }
     }

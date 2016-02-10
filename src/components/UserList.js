@@ -3,6 +3,7 @@ import React from 'react';
 export default class UserList extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {};
     }
 
     /* This method runs when component just added to the real DOM*/
