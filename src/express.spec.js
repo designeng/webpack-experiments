@@ -41,7 +41,7 @@ export default {
     // socketIo server will be started upon express application:
     socketIo: {
         createSocketIOServer: {
-            app: {$ref: 'app'},
+            app             : {$ref: 'app'},
             port            : process.env.PORT || 3000,
             verbose         : true
         }
