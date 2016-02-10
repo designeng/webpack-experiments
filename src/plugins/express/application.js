@@ -1,6 +1,11 @@
 import express from 'express';
+import http from 'http';
 
-// facets
+function httpServerWrapperFacet(resolver, facet, wire) {
+    const target = facet.target;
+    resolver.resolve(http.Server(target));
+}
+
 function startExpressServerFacet(resolver, facet, wire) {
     const port = facet.options.port;
     let target = facet.target;
@@ -14,7 +19,6 @@ function startExpressServerFacet(resolver, facet, wire) {
     resolver.resolve(target);
 }
 
-// factories
 function expressApplication(resolver, compDef, wire) {
     if (!compDef.options) {
         throw new Error("Please set true value to create Express application.")
@@ -29,6 +33,9 @@ export default function ExpressAppPlugin(options) {
             expressApplication
         },
         facets: {
+            httpServerWrapper: {
+                'ready:before': httpServerWrapperFacet
+            },
             server: {
                 ready: startExpressServerFacet
             }

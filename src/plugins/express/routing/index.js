@@ -13,6 +13,7 @@ function renderFullPage(componentHTML, title) {
             </head>
             <body>
                 <div id="root">${componentHTML}</div>
+                <script src="/socket.io/socket.io.js"></script>
                 <script src="/build/bundle.js"></script>
             </body>
         </html>
