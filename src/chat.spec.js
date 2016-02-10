@@ -17,10 +17,6 @@ export default {
         createComponent: {
             source: UserList,
             props: {
-                users: [
-                    {name: "one", key: 0},
-                    {name: "two", key: 1}
-                ],
                 socketIoHost: config.host
             }
         },

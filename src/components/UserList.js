@@ -3,17 +3,17 @@ import React from 'react';
 export default class UserList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
-    }
-
-    /* This method runs when component just added to the real DOM*/
-    componentDidMount() {
-        // const socket = io(this.props.socketIoHost);
-        // socket.emit('chat_rendered', { my: 'data123' });
+        this.state = {users: []}
     }
 
     handleClick() {
-        console.log("CLICK!");
+        console.log("CLICK!", this.state.users);
+
+        // this.setState({ users: [
+        //             {name: "wiliam", key: 0},
+        //             {name: "mariam", key: 1}
+        //         ]})
+
         const socket = io(this.props.socketIoHost);
         socket.emit('chat_click', { my: 'data123', clicked: true });
     }
@@ -25,7 +25,7 @@ export default class UserList extends React.Component {
     }
 
     render() {
-        const users = this.props.users;
+        const users = this.state.users;
         return (
             <section>
                 <ul>
