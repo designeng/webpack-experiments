@@ -20,6 +20,7 @@
     "essential-wire": "git://github.com/designeng/essential-wire",
     "falcor": "^0.1.16",
     "falcor-express": "^0.1.2",
+    "falcor-http-datasource": "^0.1.3",
     "falcor-router": "^0.2.12",
     "is-string": "^1.0.4",
     "isfunction": "0.0.6",

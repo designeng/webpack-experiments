@@ -6,6 +6,8 @@ let $atom = Model.atom;
 const usersSource = [
     {name: 'John'},
     {name: 'Paul'},
+    {name: 'Augustin'},
+    {name: 'Robert'},
 ]
 
 const UsersRouter = Router.createClass([

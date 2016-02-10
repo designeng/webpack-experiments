@@ -1,12 +1,16 @@
+import wireDebugPlugin      from 'essential-wire/source/debug';
 import reactComponentPlugin from './plugins/react/component';
+import falcorModelPlugin    from './plugins/falcor/model';
+
 import UserList from "./components/UserList";
 
-// import io from "socket.io"
 import config from "./config"
 
 export default {
     $plugins: [
-        reactComponentPlugin
+        wireDebugPlugin,
+        reactComponentPlugin,
+        falcorModelPlugin
     ],
 
     container: {
@@ -19,6 +23,10 @@ export default {
                 ],
                 socketIoHost: config.host
             }
+        },
+        addFalcorModel: {
+            sourcePath: '/users/model.json',
+            route: 'users'
         }
     }
 
