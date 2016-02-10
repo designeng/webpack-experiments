@@ -6,10 +6,19 @@ export default class UserList extends React.Component {
         this.state = {users: [{name: 'one', key: 1}]}
     }
 
+    componentDidMount() {
+        this.socket = io(this.props.socketIoHost);
+        this.textarea = document.getElementById("messageField")
+    }
+
     handleClick() {
-        const socket = io(this.props.socketIoHost);
-        socket.emit('chat_click', { my: 'data123', clicked: true });
-        console.log("CLICK");
+        let message = this.textarea.value
+        this.socket.emit('chat_click', { my: message });
+        console.log("CLICK", message);
+    }
+
+    handleChange(event) {
+        console.log("TARGET::::", event.target.value);
     }
 
     renderUsers(users) {
@@ -25,7 +34,8 @@ export default class UserList extends React.Component {
                 <ul>
                     {this.renderUsers(users)}
                 </ul>
-                <div><button value='button' onClick={this.handleClick.bind(this)} /></div>
+                <textarea id="messageField" onChange={this.handleChange.bind(this)}/>
+                <input type="button" value='Send Message' onClick={this.handleClick.bind(this)} />
             </section>
         )
     }
