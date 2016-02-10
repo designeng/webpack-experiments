@@ -44,7 +44,9 @@ export default {
 
     socketIo: {
         createSocketIO: {
-            basedOnServer: {$ref: 'app'}
+        },
+        connectToServer: {
+            server: {$ref: 'app'}
         }
     }
 }

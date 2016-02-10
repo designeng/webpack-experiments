@@ -1,16 +1,25 @@
 import socket from 'socket.io';
 
-function createSocketIO(resolver, compDef, wire) {
-    wire(compDef.options).then(options => {
-        const server = options.basedOnServer;
-        resolver.resolve(socket.listen(server));
+function connectToServer(resolver, facet, wire) {
+    const target = facet.target;
+    wire(facet.options).then(server => {
+        resolver.resolve(target.listen(server));
     })
+}
+
+function createSocketIO(resolver, compDef, wire) {
+    resolver.resolve(socket);
 }
 
 export default function SocketIOPlugin(options) {
     return {
         factories: {
             createSocketIO
+        },
+        facets: {
+            connectToServer: {
+                'connect': connectToServer
+            }
         }
     }
 }
