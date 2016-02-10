@@ -23,8 +23,6 @@ function createComponent(resolver, compDef, wire) {
         } else {
             component = React.createElement(source, objectAssign({}, props));
 
-            console.log("process.env.NODE_ENV::::", process.env.NODE_ENV);
-
             if (process.env.NODE_ENV == 'server') {
                 resolver.resolve(ReactDOMServer.renderToString(component));
             } else if (process.env.NODE_ENV == 'client') {

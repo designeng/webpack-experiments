@@ -7,7 +7,7 @@ import clientSpec   from './client.spec';
 let rootElement = document.querySelector("#root");
 
 wire(clientSpec).then(context => {
-    let rootComponent = context.articleContainer
+    let rootComponent = context.ChatContainer;
     if (isFunction(rootComponent)){
         rootComponent().then(context => {
             console.log("context.container:::::::", context.container);

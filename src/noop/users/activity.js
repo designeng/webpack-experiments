@@ -5,7 +5,7 @@ export default function usersActivity(io) {
             socket.emit('message_from_server', { hello: 'world' });
         }, 3000);
         
-        socket.on('chat_rendered', function (data) {
+        socket.on('chat_click', function (data) {
             console.log(data);
         });
         
