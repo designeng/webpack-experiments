@@ -1,6 +1,13 @@
 import wireDebugPlugin      from 'essential-wire/source/debug';
 import reactComponentPlugin from './plugins/react/component';
 import falcorModelPlugin    from './plugins/falcor/model';
+import hotRuntimePlugin     from './plugins/hot/hotRuntimePlugin';
+import storeBuilderPlugin   from './plugins/redux/storeBuilderPlugin';
+
+import rootReducer from "./reducers";
+
+import thunkMiddleware      from "redux-thunk";
+import promiseMiddleware    from "./middleware/promiseMiddleware";
 
 import Chat from "./components/Chat";
 
@@ -10,8 +17,26 @@ export default {
     $plugins: [
         wireDebugPlugin,
         reactComponentPlugin,
-        falcorModelPlugin
+        falcorModelPlugin,
+        storeBuilderPlugin,
+        hotRuntimePlugin
     ],
+
+    rootReducer: rootReducer,
+
+    middleware: [
+        thunkMiddleware,
+        promiseMiddleware
+    ],
+
+    storeBuilder: {
+        getStoreBuilder: {
+            rootReducer : {$ref: 'rootReducer'},
+            middleware  : {$ref: 'middleware'}
+        },
+        acceptHotRuntime: {
+        }
+    },
 
     container: {
         createComponent: {
