@@ -1,5 +1,6 @@
 import wire     from 'essential-wire';
 import mainSpec from './main.spec';
+import 'babel-polyfill';
 
 wire(mainSpec)
     .then(context => {

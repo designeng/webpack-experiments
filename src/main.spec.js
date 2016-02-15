@@ -1,18 +1,7 @@
-import onePageSpec from './one.page.spec';
-import wireDebug from 'essential-wire/source/debug';
+import onePageSpec  from './one.page.spec';
+import deferWire    from './decorators/deferWire';
 
-const deferWire = (config) => {
-    return (target, name, description) => {
-        return {
-            value: {
-                wire: {
-                    spec: config.spec,
-                    defer: true
-                }
-            }
-        }
-    }
-}
+import wireDebug    from 'essential-wire/source/debug';
 
 export default {
 
@@ -20,7 +9,6 @@ export default {
         wireDebug
     ],
 
-    
     test: 123,
 
     @deferWire({spec: onePageSpec})
