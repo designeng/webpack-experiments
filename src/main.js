@@ -4,8 +4,8 @@ import mainSpec from './main.spec';
 wire(mainSpec)
     .then(context => {
         console.log("context:::", context);
-        context.onePageModule()
-            .then(context =>  console.log("inner context:::test", context.test))
+        context.onePageModule({one: 1})
+            .then(context =>  console.log("inner context:::", context.test, context.onePageModuleVariable, context.one))
             .otherwise(err => console.log("inner context error:::", err));
     })
     .otherwise(err => console.log("error:::", err));
