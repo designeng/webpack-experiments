@@ -24,6 +24,5 @@ export default {
     test: 123,
 
     @deferWire({spec: onePageSpec})
-    onePageModule: {
-    }
+    onePageModule: {}
 }
