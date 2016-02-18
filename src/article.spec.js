@@ -1,6 +1,6 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
 import handlebarsTemplatePlugin from './plugins/handlebars/template';
-import createEventsPlugin from './plugins/events';
+import bindEventsPlugin from './plugins/events';
 import insertInPlugin from './plugins/dom/insert';
 
 import templateA from "./templates/templateA.hbs";
@@ -11,6 +11,7 @@ let spec = {
     $plugins: [
         wireDebugPlugin,
         handlebarsTemplatePlugin,
+        bindEventsPlugin,
         insertInPlugin
     ],
 
@@ -21,15 +22,11 @@ let spec = {
         },
         insert: {
             inTo: {$ref: 'slot'}
-        }
-    },
-
-    events: {
-        createEvents: {
+        },
+        bindEvents: {
             list: [
-                {id: 'one', handler: {$ref: 'controller.log'}}
-            ],
-            bindTo: {$ref: 'component'}
+                {class: 'component-0', event: 'click', handler: {$ref: 'controller.log'}}
+            ]
         }
     },
 
@@ -38,4 +35,4 @@ let spec = {
     }
 }
 
-export default environment('events', 'controller')(spec);
+export default environment('controller')(spec);

@@ -1,24 +1,24 @@
 import $ from "jquery";
 
-// factories
-function createEvents(resolver, compDef, wire) {
+function bindEventsFacet(resolver, compDef, wire) {
     wire(compDef.options).then(({
-        bindTo,
         list
     }) => {
-        let events = {}
-        list.forEach(event => {
-            // $()
-        })
+        let events = list.forEach(item => {
+            let selector = item.class ? '.' + item.class : (item.id ? '#' + item.id : 'none')
+            $(selector).on(item.event, item.handler);
+        });
         
         resolver.resolve(events)
     })
 }
 
-export default function createEventsPlugin(options) {
+export default function bindEventsPlugin(options) {
     return {
-        factories: {
-            createEvents
+        facets: {
+            bindEvents: {
+                'ready': bindEventsFacet
+            }
         }
     }
 }
