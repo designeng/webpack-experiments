@@ -1,6 +1,14 @@
 import _ from "underscore";
 const COMPILATION_MODE = process.env.COMPILATION_MODE;
 
+function cleanInsertFactory(spec){
+    let _spec = _.clone(spec);
+    if(_spec.component && _spec.component.insert){
+        delete _spec.component.insert;
+    }
+    return _spec;
+}
+
 export default function environment(...extraElements) {
     return (spec) => {
         if(COMPILATION_MODE == 'server'){
@@ -10,6 +18,8 @@ export default function environment(...extraElements) {
                     delete _spec[element];
                 }
             });
+
+            _spec = cleanInsertFactory(_spec);
             return _spec;
         } else {
             return spec;

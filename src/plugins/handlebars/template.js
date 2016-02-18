@@ -1,7 +1,6 @@
 import Handlebars from 'handlebars';
 import isString from 'is-string';
 
-// factories
 function createComponent(resolver, compDef, wire) {
     wire(compDef.options).then(({
         template,

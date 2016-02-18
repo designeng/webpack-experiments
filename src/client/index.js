@@ -4,12 +4,14 @@ import isFunction   from 'isfunction';
 
 import clientSpec   from './client.spec';
 
-wire(clientSpec).then(context => {
-    let rootComponent = context.articleContainer
-    if (isFunction(rootComponent)){
-        rootComponent().then(context => {
-            console.log("context.component:::", context.component);
-            $("#root").html(context.component)
-        })
-    }
-}).otherwise(error => console.error("ERROR clientSpec:", error));
+wire({ slot: $("#root") }).then(context => {
+    context.wire(clientSpec).then(context => {
+        let rootComponent = context.articleContainer
+        if (isFunction(rootComponent)){
+            rootComponent().then(context => {
+                console.log("context.component:::", context.component);
+                // $("#root").html(context.component)
+            })
+        }
+    }).otherwise(error => console.error("ERROR clientSpec:", error));
+})
