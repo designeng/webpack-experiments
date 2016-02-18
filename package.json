@@ -17,7 +17,6 @@
     "chalk": "^1.1.1",
     "essential-wire": "git://github.com/designeng/essential-wire",
     "handlebars": "^4.0.5",
-    "html-loader": "^0.4.3",
     "install": "^0.4.4",
     "is-string": "^1.0.4",
     "isfunction": "0.0.6",
@@ -33,6 +32,7 @@
     "babel-preset-react": "^6.3.13",
     "cheerio": "^0.20.0",
     "express": "^4.13.3",
+    "handlebars-template-loader": "^0.5.4",
     "node-notifier": "^4.4.0",
     "rimraf": "^2.5.1",
     "webpack": "^1.12.12"

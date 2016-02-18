@@ -8,7 +8,7 @@ wire(clientSpec).then(context => {
     let rootComponent = context.articleContainer
     if (isFunction(rootComponent)){
         rootComponent().then(context => {
-            console.log("context.component:::", context.component));
+            console.log("context.component:::", context.component);
             $("#root").html(context.component)
         })
     }

@@ -1,8 +1,7 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
 import handlebarsTemplatePlugin from './plugins/handlebars/template';
 
-// const templateA = require("html!./templates/templateA.html");
-import templateA from "./templates/templateA.html";
+import templateA from "./templates/templateA.hbs";
 
 export default {
     $plugins: [
@@ -12,7 +11,8 @@ export default {
 
     component: {
         createComponent: {
-            template: templateA
+            template: templateA,
+            model: {id: "1234567...."}
         }
     }
 }

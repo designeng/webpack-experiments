@@ -3,7 +3,7 @@ import articleSpec      from './../article.spec';
 
 export default {
     $plugins: [
-
+        wireDebugPlugin
     ],
 
     articleContainer: {

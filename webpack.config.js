@@ -18,10 +18,6 @@ module.exports = {
                 test: /\.js$/, 
                 loader: 'babel',
                 exclude: /node_modules/
-            },
-            {
-                test: /\.html$/,
-                loader: "html"
             }
         ]
     },

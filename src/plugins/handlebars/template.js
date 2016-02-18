@@ -3,12 +3,11 @@ import isString from 'is-string';
 
 // factories
 function createComponent(resolver, compDef, wire) {
-    let component;
-    
-    wire(compDef).then(({
-        template
+    wire(compDef.options).then(({
+        template,
+        model
     }) => {
-        let html = Handlebars.compile(template)
+        let html = template(model);
         resolver.resolve(html)
     })
 }

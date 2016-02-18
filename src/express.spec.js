@@ -4,7 +4,7 @@ import expressRoutingMiddlewarePlugin from './plugins/express/routing';
 
 export default {
     $plugins: [
-        // wireDebugPlugin,
+        wireDebugPlugin,
         expressAppPlugin,
         expressRoutingMiddlewarePlugin
     ],

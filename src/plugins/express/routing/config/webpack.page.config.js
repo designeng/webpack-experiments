@@ -12,14 +12,11 @@ module.exports = {
     },
     module: {
         loaders: [
+            { test: /\.hbs/, loader: "handlebars-template-loader", exclude: /node_modules/ },
             {   
                 test: /\.js$/, 
                 loader: 'babel',
                 exclude: /node_modules/
-            },
-            {
-                test: /\.html$/,
-                loader: "html"
             }
         ]
     },
