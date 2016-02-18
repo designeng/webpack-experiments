@@ -12,8 +12,6 @@ function insertInFacet(resolver, facet, wire) {
 
         if(parseInt(targetElement.attr(DATA_CHECKSUM)) !== checksum){
             targetElement.appendTo(inTo);
-        } else {
-            // $('<div>redneder!</div>').appendTo(inTo);
         }
         resolver.resolve(target);
     })
