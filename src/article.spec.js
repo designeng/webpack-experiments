@@ -3,7 +3,9 @@ import handlebarsTemplatePlugin from './plugins/handlebars/template';
 
 import templateA from "./templates/templateA.hbs";
 import controller from "./controller";
+import environment from "./decorators/environment";
 
+@environment('events', 'controller')
 export default {
     $plugins: [
         wireDebugPlugin,
