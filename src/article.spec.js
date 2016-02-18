@@ -1,10 +1,13 @@
 import wireDebugPlugin from 'essential-wire/source/debug';
-import reactComponentPlugin from './plugins/handlebars/template';
-const templateA = require("html!./templates/templateA.html");
+import handlebarsTemplatePlugin from './plugins/handlebars/template';
+
+// const templateA = require("html!./templates/templateA.html");
+import templateA from "./templates/templateA.html";
 
 export default {
     $plugins: [
-        wireDebugPlugin
+        wireDebugPlugin,
+        handlebarsTemplatePlugin
     ],
 
     component: {

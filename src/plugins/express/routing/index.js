@@ -1,5 +1,4 @@
 import fs from 'fs';
-import React from 'react';
 import isString from 'is-string';
 import isFunction from 'isfunction';
 

@@ -4,8 +4,6 @@ import isFunction   from 'isfunction';
 
 import clientSpec   from './client.spec';
 
-let rootElement = document.querySelector("#root");
-
 wire(clientSpec).then(context => {
     let rootComponent = context.articleContainer
     if (isFunction(rootComponent)){
