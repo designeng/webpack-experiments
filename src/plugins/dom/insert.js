@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import adler32 from 'adler-32';
-
-const DATA_CHECKSUM = 'data-checksum';
+import { DATA_CHECKSUM } from '../constants';
 
 function insertInFacet(resolver, facet, wire) {
     const target = facet.target;
