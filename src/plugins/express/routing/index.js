@@ -14,7 +14,7 @@ function compile() {
     return when.promise((resolve, reject, notify) => {
         compiler.run((err, stats) => {
             if (err) {
-                console.error(`COMPILATION ERROR: ${err}`);
+                console.error("COMPILATION ERROR: ${err}");
                 reject(err);
             } else {
                 resolve("COMPILED::: " + stats);
