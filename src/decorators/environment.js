@@ -1,12 +1,18 @@
-import underscore from "underscore";
+import _ from "underscore";
 const COMPILATION_MODE = process.env.COMPILATION_MODE;
 
-console.log("COMPILATION_MODE::::", COMPILATION_MODE);
-
 export default function environment(...extraElements) {
-    return (target, name, description) => {
-        return {
-            value: description.value
+    return (spec) => {
+        if(COMPILATION_MODE == 'server'){
+            let _spec = _.clone(spec);
+            extraElements.forEach(element => {
+                if(_spec.hasOwnProperty(element)){
+                    delete _spec[element];
+                }
+            });
+            return _spec;
+        } else {
+            return spec;
         }
     }
 }

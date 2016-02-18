@@ -5,8 +5,7 @@ import templateA from "./templates/templateA.hbs";
 import controller from "./controller";
 import environment from "./decorators/environment";
 
-@environment('events', 'controller')
-export default {
+let spec = {
     $plugins: [
         wireDebugPlugin,
         handlebarsTemplatePlugin
@@ -27,6 +26,11 @@ export default {
     },
 
     controller: {
-        create: controller
+        create: controller,
+        ready: {
+            log: {}
+        }
     }
 }
+
+export default environment('events', 'controller')(spec);
