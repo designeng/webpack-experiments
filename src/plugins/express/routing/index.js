@@ -84,7 +84,7 @@ function routeMiddleware(resolver, facet, wire) {
                     component().then(context => {
                         when(compile()).then(compilationResult => {
                             console.log(chalk.yellow("compilationResult::::: " + compilationResult));
-                            res.status(200).end(renderFullPage("SSR: " + context.component, title));
+                            res.status(200).end(renderFullPage(context.component, title));
                         }).otherwise(error => {
                             console.error("ERROR:::...", error);
                         });
