@@ -10,7 +10,6 @@ wire({ slot: $("#root") }).then(context => {
         if (isFunction(rootComponent)){
             rootComponent().then(context => {
                 console.log("context.component:::", context.component);
-                // $("#root").html(context.component)
             })
         }
     }).otherwise(error => console.error("ERROR clientSpec:", error));
