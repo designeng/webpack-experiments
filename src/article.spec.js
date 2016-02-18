@@ -1,16 +1,15 @@
-import reactComponentPlugin from './plugins/react/component';
-import Article from "./components/Article";
+import wireDebugPlugin from 'essential-wire/source/debug';
+import reactComponentPlugin from './plugins/handlebars/template';
+const templateA = require("html!./templates/templateA.html");
 
 export default {
     $plugins: [
-        reactComponentPlugin
+        wireDebugPlugin
     ],
 
-    // to be resolved in routeMiddlewarePlugin/routeMiddleware facet the root container
-    // should be named 'container' in specification:
-    container: {
-        createContainer: {
-            source: Article
+    component: {
+        createComponent: {
+            template: templateA
         }
     }
 }

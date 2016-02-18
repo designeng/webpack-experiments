@@ -1,5 +1,5 @@
 import wire         from 'essential-wire';
-import { render }   from 'react-dom';
+import $            from 'jquery';
 import isFunction   from 'isfunction';
 
 import clientSpec   from './client.spec';
@@ -10,8 +10,8 @@ wire(clientSpec).then(context => {
     let rootComponent = context.articleContainer
     if (isFunction(rootComponent)){
         rootComponent().then(context => {
-            console.log("context.container:::::::", context.container);
-            render(context.container, rootElement);
+            console.log("context.component:::", context.component));
+            $("#root").html(context.component)
         })
     }
 }).otherwise(error => console.error("ERROR clientSpec:", error));

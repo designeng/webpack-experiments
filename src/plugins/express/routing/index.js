@@ -84,7 +84,7 @@ function routeMiddleware(resolver, facet, wire) {
                 } else if (isFunction(component)){
                     component().then(context => {
                         when(compile()).then(compilationResult => {
-                            res.status(200).end(renderFullPage(context.container, title));
+                            res.status(200).end(renderFullPage(context.component, title));
                         })
                     })
                 }
