@@ -25,7 +25,9 @@ let spec = {
         },
         bindEvents: {
             list: [
-                {class: 'component-0', event: 'click', handler: {$ref: 'controller.log'}}
+                {class: 'component-0', event: 'click',  handler: {$ref: 'controller.log'}},
+                {id: 'first-name'    , event: 'change', handler: {$ref: 'controller.onFirstNameChange'}},
+                {id: 'second-name'   , event: 'change', handler: {$ref: 'controller.onSecondNameChange'}},
             ]
         }
     },
