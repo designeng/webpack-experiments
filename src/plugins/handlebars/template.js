@@ -1,5 +1,5 @@
-import Handlebars from 'handlebars';
-import isString from 'is-string';
+import Handlebars   from 'handlebars';
+import adler32      from 'adler-32';
 
 function createComponent(resolver, compDef, wire) {
     wire(compDef.options).then(({
@@ -7,7 +7,10 @@ function createComponent(resolver, compDef, wire) {
         model
     }) => {
         let html = template(model);
-        resolver.resolve(html)
+        let checksum = adler32.str(html);
+        let prefix = "<div data-checksum='" + checksum + "'>";
+        let suffix = "</div>";
+        resolver.resolve(prefix + html + suffix);
     })
 }
 
