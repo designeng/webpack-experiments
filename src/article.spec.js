@@ -29,7 +29,7 @@ let spec = {
                 {id: 'first-name'    , event: 'change', handler: {$ref: 'controller.onFirstNameChange'}},
                 {id: 'second-name'   , event: 'change', handler: {$ref: 'controller.onSecondNameChange'}},
             ]
-        }
+        },
     },
 
     controller: {
