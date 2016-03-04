@@ -23,6 +23,9 @@ export default {
                 }
             ]
         },
+        static: {
+            dir: './public'
+        },
         routeNotFoundMiddleware: {},
         server: {
             port            : process.env.PORT || 3000,
