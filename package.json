@@ -1,13 +1,13 @@
 {
   "name": "webpack-experiments",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
     "clean": "rimraf -rf public/build",
-    "build": "npm run clean & NODE_ENV=client webpack --watch --config webpack.config.js",
+    "webpack": "npm run clean & NODE_ENV=client webpack --watch --config webpack.config.js",
     "runner": "NODE_ENV=build node ./runner",
-    "start": "npm run clean & NODE_ENV=server COMPILATION_MODE=server node ./runner",
+    "start": "npm run webpack & NODE_ENV=server COMPILATION_MODE=server node ./runner",
     "refresh-wire": "rimraf -rf node_modules/essential-wire && npm install",
     "refresh-spec-loader": "rimraf -rf node_modules/webpack-spec-loader && npm install",
     "test": "node ./curl-test"
@@ -41,6 +41,7 @@
     "handlebars-template-loader": "^0.5.4",
     "node-notifier": "^4.4.0",
     "rimraf": "^2.5.1",
-    "webpack": "^1.12.12"
+    "webpack": "^1.12.12",
+    "wire-spec-loader": "git://github.com/designeng/wire-spec-loader.git"
   }
 }

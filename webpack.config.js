@@ -7,25 +7,35 @@ var NODE_ENV = process.env.NODE_ENV;
 module.exports = {
     context: __dirname + '/src',
     entry: {
-        client    : './client/index.js'
+        demoPage    : './client/index.js'
     },
     output: {
-        filename: './public/build/bundle.js'
+        filename: './public/build/[name].js'
     },
     module: {
         loaders: [
             {   
-                test: /\.js$/, 
+                test: /\.hbs/, 
+                loader: "handlebars-template-loader", 
+                exclude: /node_modules/ 
+            },
+            {
+                test: /\.spec$/,
+                loader: 'wire-spec-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.js$/,
                 loader: 'babel',
                 exclude: /node_modules/
             }
         ]
     },
+    node: {
+        fs: "empty" // avoids error messages
+    },
     plugins: [
         new webpack.EnvironmentPlugin('NODE_ENV'),
-        new webpack.DefinePlugin({
-            LANG: JSON.stringify('ru')
-        })
     ],
     devtool: 'source-map'
 }

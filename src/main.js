@@ -6,7 +6,6 @@ import Timer        from './utils/timer';
 
 let timer = new Timer();
 
-
 const mainTask = () => {
     return wire(mainSpec);
 }
