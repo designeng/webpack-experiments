@@ -1,6 +1,7 @@
 import wire         from 'essential-wire';
 import $            from 'jquery';
 import isFunction   from 'isfunction';
+import pipeline     from 'when/pipeline';
 
 import clientSpec   from './client.spec';
 
