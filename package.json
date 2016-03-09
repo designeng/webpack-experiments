@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "adler-32": "^0.3.0",
+    "axios": "^0.9.1",
     "chalk": "^1.1.1",
     "essential-wire": "git://github.com/designeng/essential-wire",
     "handlebars": "^4.0.5",

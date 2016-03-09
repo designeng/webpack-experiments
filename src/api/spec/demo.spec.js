@@ -1,5 +1,6 @@
 import wireDebugPlugin  from 'essential-wire/source/debug';
-import { getNewsUrl }  from '../config';
+import requestPlugin    from '../../plugins/api/request';
+import { getNewsUrl }   from '../config';
 
 export default {
     $plugins: [
@@ -10,9 +11,9 @@ export default {
     news: {
         request: {
             url: getNewsUrl(),
-            params: [
-                {count: 10}
-            ]
+            params: {
+                count: 10
+            }
         }
     }
 }

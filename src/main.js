@@ -1,5 +1,7 @@
 import wire         from 'essential-wire';
 import pipeline     from 'when/pipeline';
+
+import demoSpec     from './api/spec/demo.spec';
 import mainSpec     from './main.spec';
 import expressSpec  from './express.spec';
 
@@ -11,10 +13,14 @@ const mainTask = () => {
     return wire(mainSpec);
 }
 
-const expressTask = (context) => {
+const demoTask = (context) => {
     return context.wire(expressSpec);
 }
 
-pipeline([mainTask, expressTask]).then(context => {
+const expressTask = (context) => {
+    return context.wire(demoSpec);
+}
+
+pipeline([mainTask, demoTask, expressTask]).then(context => {
     timer.end();
 }).otherwise(error => console.error("ERROR:::", error));
