@@ -1,7 +1,5 @@
 import fs from 'fs';
 import axios from 'axios';
-import isString from 'is-string';
-import isFunction from 'isfunction';
 
 import pipeline     from 'when/pipeline';
 import when         from "when";
