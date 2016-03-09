@@ -1,12 +1,11 @@
 import fs from 'fs';
+import axios from 'axios';
 import isString from 'is-string';
 import isFunction from 'isfunction';
 
 import pipeline     from 'when/pipeline';
 import when         from "when";
 import chalk        from "chalk";
-
-import essentialWire from 'essential-wire';
 
 function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;
@@ -60,8 +59,11 @@ function imagesAssets(resolver, facet, wire) {
     const host = facet.options.host;
 
     target.get("/images/*", function (req, res) {
-        console.log(">>>>>>", req.url);
-        res.status(200).end(req.url);
+        let lastFragment = req.url.replace('/images/', '')
+        console.log(">>>>>>", lastFragment);
+        axios.get(host + lastFragment)
+            .then(result => res.status(200).end(result))
+            .catch(error => res.status(500).end(error));
     });
 
     resolver.resolve(target);
