@@ -47,8 +47,10 @@ function routeNotFoundMiddleware(resolver, facet, wire) {
 // css/global.css
 function cssAssets(resolver, facet, wire) {
     const target = facet.target;
+    const main = facet.options.main;
 
     target.get("/css/global.css", function (req, res) {
+        let result = fs.readFileSync(main);
         res.status(200).end(result);
     });
 

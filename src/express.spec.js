@@ -32,6 +32,9 @@ export default {
         static: {
             dir: './public'
         },
+        cssAssets: {
+            main: './public/assets/global.css'
+        },
         routeNotFoundMiddleware: {},
         server: {
             port            : process.env.PORT || 3000,
