@@ -20,8 +20,8 @@ function createComponent(resolver, compDef, wire) {
 
 function asHandlebarsFacet(resolver, facet, wire) {
     var target = facet.target;
-    console.log("target:::::", target);
-    resolver.resolve(Handlebars.compile(target));
+    var compiled = Handlebars.compile(target);
+    resolver.resolve(compiled);
 }
 
 export default function HandlebarsTemplatePlugin(options) {
@@ -33,7 +33,7 @@ export default function HandlebarsTemplatePlugin(options) {
         },
         facets: {
             asHandlebars: {
-                'ready:before': asHandlebarsFacet
+                'create:after': asHandlebarsFacet
             }
         }
     }

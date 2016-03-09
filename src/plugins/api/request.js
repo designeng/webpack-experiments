@@ -1,11 +1,16 @@
 import axios from 'axios';
+import _ from 'underscore';
 
 function resolve(resolver, options, response) {
-    if(options.output) {
-        resolver.resolve(response[options.output]);
+    let output = options.output;
+    if(_.isString(output)) {
+        response = response[output];
     } else {
-        resolver.resolve(response['data']);
+        response = response['data'];
     }
+
+    response = output && output.transform ? output.transform(response) : response;
+    resolver.resolve(response);
 }
 
 function request(resolver, compDef, wire) {

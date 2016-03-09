@@ -1,6 +1,8 @@
 import wireDebugPlugin  from 'essential-wire/source/debug';
 import requestPlugin    from '../../plugins/api/request';
 import handlebarsTemplatePlugin from '../../plugins/handlebars/template';
+import Handlebars   from 'handlebars';
+
 import { getNewsUrl, getPageTemplateUrl } from '../config';
 
 export default {
@@ -21,8 +23,10 @@ export default {
 
     pageTemplate: {
         request: {
-            url: getPageTemplateUrl()
-        },
-        asHandlebars: true
+            url: getPageTemplateUrl(),
+            output: {
+                transform: Handlebars.compile
+            }
+        }
     }
 }
