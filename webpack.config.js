@@ -1,4 +1,4 @@
-// in this branch plugins/express/routing/config/webpack.page.config.js in use!
+// obsolete
 
 var webpack = require('webpack');
 
