@@ -42,6 +42,6 @@
     "node-notifier": "^4.4.0",
     "rimraf": "^2.5.1",
     "webpack": "^1.12.12",
-    "wire-spec-loader": "git://github.com/designeng/wire-spec-loader.git"
+    "wire-spec-loader": "git://github.com/designeng/wire-spec-loader"
   }
 }

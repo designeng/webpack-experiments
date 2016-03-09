@@ -20,13 +20,13 @@ module.exports = {
                 exclude: /node_modules/ 
             },
             {
-                test: /\.spec$/,
-                loader: 'wire-spec-loader',
+                test: /\.js$/,
+                loader: 'babel',
                 exclude: /node_modules/
             },
             {
-                test: /\.js$/,
-                loader: 'babel',
+                test: /\.ess$/,
+                loader: 'wire-spec-loader',
                 exclude: /node_modules/
             }
         ]
