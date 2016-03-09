@@ -18,12 +18,23 @@ function createComponent(resolver, compDef, wire) {
     })
 }
 
+function asHandlebarsFacet(resolver, facet, wire) {
+    var target = facet.target;
+    console.log("target:::::", target);
+    resolver.resolve(Handlebars.compile(target));
+}
+
 export default function HandlebarsTemplatePlugin(options) {
     return {
         factories: {
             createComponent,
             // alias
             createContainer: createComponent
+        },
+        facets: {
+            asHandlebars: {
+                'ready:before': asHandlebarsFacet
+            }
         }
     }
 }

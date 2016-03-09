@@ -1,11 +1,13 @@
 import wireDebugPlugin  from 'essential-wire/source/debug';
 import requestPlugin    from '../../plugins/api/request';
-import { getNewsUrl }   from '../config';
+import handlebarsTemplatePlugin from '../../plugins/handlebars/template';
+import { getNewsUrl, getPageTemplateUrl } from '../config';
 
 export default {
     $plugins: [
         wireDebugPlugin,
-        requestPlugin
+        requestPlugin,
+        handlebarsTemplatePlugin
     ],
 
     news: {
@@ -15,5 +17,12 @@ export default {
                 count: 10
             }
         }
+    },
+
+    pageTemplate: {
+        request: {
+            url: getPageTemplateUrl()
+        },
+        asHandlebars: true
     }
 }
