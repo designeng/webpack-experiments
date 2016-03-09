@@ -32,9 +32,7 @@ function request(resolver, compDef, wire) {
         params
     })
     .then(response => {
-        // console.log("RESPONSE:::::", response);
-        resolver.resolve("TEST");
-        // resolve(resolver, compDef.options, response)
+        resolve(resolver, compDef.options, response)
     })
     .catch(error => resolver.reject(error));
 }

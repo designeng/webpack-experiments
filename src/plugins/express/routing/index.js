@@ -20,8 +20,7 @@ function routeMiddleware(resolver, facet, wire) {
 
                 wireHandler().then(
                     (context) => {
-                        console.log("context.controller::", context.controller);
-                        res.status(200).end('-----')
+                        res.status(200).end(context.controller.render())
                     },
                     (error) => res.status(500).end(error)
                 );
@@ -44,6 +43,18 @@ function routeNotFoundMiddleware(resolver, facet, wire) {
     resolver.resolve(target);
 }
 
+
+// css/global.css
+function cssAssets(resolver, facet, wire) {
+    const target = facet.target;
+
+    target.get("/css/global.css", function (req, res) {
+        res.status(200).end(result);
+    });
+
+    resolver.resolve(target);
+}
+
 export default function routeMiddlewarePlugin(options) {
     return {
         facets: {
@@ -52,6 +63,9 @@ export default function routeMiddlewarePlugin(options) {
             },
             routeNotFoundMiddleware: {
                 'initialize:after': routeNotFoundMiddleware
+            },
+            cssAssets: {
+                'initialize:after': cssAssets
             }
         }
     }
