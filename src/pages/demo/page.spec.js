@@ -1,6 +1,7 @@
 import wireDebugPlugin  from 'essential-wire/source/debug';
 import requestPlugin    from '../../plugins/api/request';
 import handlebarsTemplatePlugin from '../../plugins/handlebars/template';
+import controller from './controller';
 import Handlebars   from 'handlebars';
 
 import { 
@@ -43,5 +44,16 @@ export default {
         }
     },
 
-    
+    controller: {
+        create: {
+            module: controller,
+            isConstructor: true
+        },
+        properties: {
+            news: {$ref: 'news'},
+            pageTemplate: {$ref: 'pageTemplate'},
+            newsBlockTemplate: {$ref: 'newsBlockTemplate'}
+        }
+    }
+
 }

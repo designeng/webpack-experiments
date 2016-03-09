@@ -31,7 +31,11 @@ function request(resolver, compDef, wire) {
     axios[method](url, {
         params
     })
-    .then(response => resolve(resolver, compDef.options, response))
+    .then(response => {
+        // console.log("RESPONSE:::::", response);
+        resolver.resolve("TEST");
+        // resolve(resolver, compDef.options, response)
+    })
     .catch(error => resolver.reject(error));
 }
 
