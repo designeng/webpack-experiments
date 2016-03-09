@@ -1,9 +1,20 @@
 import wire         from 'essential-wire';
 import pipeline     from 'when/pipeline';
-// import mainSpec     from './main.spec';
+import mainSpec     from './main.spec';
+import expressSpec  from './express.spec';
 
-import testSpec     from './test.ess';
+import Timer    from './utils/timer';
 
-wire(testSpec).then(context => {
-    console.log("context::", context);
-}).otherwise(error => console.error("ERROR:", error))
+let timer = new Timer();
+
+const mainTask = () => {
+    return wire(mainSpec);
+}
+
+const expressTask = (context) => {
+    return context.wire(expressSpec);
+}
+
+pipeline([mainTask, expressTask]).then(context => {
+    timer.end();
+}).otherwise(error => console.error("ERROR:::", error));

@@ -23,11 +23,6 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel',
                 exclude: /node_modules/
-            },
-            {
-                test: /\.ess$/,
-                loader: 'wire-spec-loader',
-                exclude: /node_modules/
             }
         ]
     },
