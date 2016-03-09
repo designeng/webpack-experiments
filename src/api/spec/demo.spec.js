@@ -3,7 +3,11 @@ import requestPlugin    from '../../plugins/api/request';
 import handlebarsTemplatePlugin from '../../plugins/handlebars/template';
 import Handlebars   from 'handlebars';
 
-import { getNewsUrl, getPageTemplateUrl } from '../config';
+import { 
+    getNewsUrl, 
+    getNewsBlockTemplateUrl, 
+    getPageTemplateUrl 
+} from '../config';
 
 export default {
     $plugins: [
@@ -17,6 +21,15 @@ export default {
             url: getNewsUrl(),
             params: {
                 count: 10
+            }
+        }
+    },
+
+    newsBlockTemplate: {
+        request: {
+            url: getNewsBlockTemplateUrl(),
+            output: {
+                transform: Handlebars.compile
             }
         }
     },

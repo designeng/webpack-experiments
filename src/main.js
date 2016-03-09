@@ -22,6 +22,5 @@ const expressTask = (context) => {
 }
 
 pipeline([mainTask, demoTask, expressTask]).then(context => {
-    console.log("context::::pageTemplate", context.pageTemplate);
     timer.end();
 }).otherwise(error => console.error("ERROR:::", error));
