@@ -7,7 +7,7 @@ import {
     getNewsUrl, 
     getNewsBlockTemplateUrl, 
     getPageTemplateUrl 
-} from '../config';
+} from '../../api/config';
 
 export default {
     $plugins: [
@@ -41,5 +41,7 @@ export default {
                 transform: Handlebars.compile
             }
         }
-    }
+    },
+
+    
 }

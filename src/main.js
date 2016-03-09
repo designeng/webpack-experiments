@@ -1,7 +1,7 @@
 import wire         from 'essential-wire';
 import pipeline     from 'when/pipeline';
 
-import demoSpec     from './api/spec/demo.spec';
+import demoSpec     from './pages/demo/page.spec';
 import mainSpec     from './main.spec';
 import expressSpec  from './express.spec';
 
