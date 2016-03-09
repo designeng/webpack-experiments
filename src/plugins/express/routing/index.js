@@ -16,11 +16,11 @@ function routeMiddleware(resolver, facet, wire) {
 
         routes.forEach(route => {
             target.get(route.url, function (req, res) {
-                let pageSpec = route.spec;
+                let wireHandler = route.wireHandler;
 
-                essentialWire(pageSpec).then(
+                wireHandler().then(
                     (context) => {
-                        console.log("context.controller::news::::", context.controller.render());
+                        console.log("context.controller::", context.controller);
                         res.status(200).end('-----')
                     },
                     (error) => res.status(500).end(error)

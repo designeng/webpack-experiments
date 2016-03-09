@@ -1,18 +1,9 @@
-// function pageController() {
-// }
-
-// pageController.prototype.render = function() {
-//     return "ABC... " + this.news;
-// }
-
-// export default pageController;
-
-class PageController {
-    render() {
-        return "ABC... " + this.news;
-    }
+const controller = function controller() {
+    
 }
 
-export function contr() {
-    return PageController;
-}
+controller.prototype.render = function() {
+    console.log("RENDERED");
+};
+
+export default controller;

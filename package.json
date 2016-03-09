@@ -8,6 +8,7 @@
     "webpack": "npm run clean & NODE_ENV=client webpack --watch --config webpack.config.js",
     "runner": "NODE_ENV=build node ./runner",
     "start": "npm run webpack & NODE_ENV=server COMPILATION_MODE=server node ./runner",
+    "smoke": "NODE_ENV=smoke node ./runner",
     "refresh-wire": "rimraf -rf node_modules/essential-wire && npm install",
     "refresh-spec-loader": "rimraf -rf node_modules/webpack-spec-loader && npm install",
     "test": "node ./curl-test"

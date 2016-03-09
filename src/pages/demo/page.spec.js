@@ -46,8 +46,7 @@ export default {
 
     controller: {
         create: {
-            module: controller,
-            isConstructor: true
+            module: controller
         },
         properties: {
             news: {$ref: 'news'},

@@ -11,13 +11,21 @@ export default {
         expressAppPlugin,
         expressRoutingMiddlewarePlugin
     ],
+
+    demoPage: {
+        wire: {
+            spec: demoPageSpec,
+            defer: true
+        }
+    },
+
     app: {
         expressApplication: true,
         routeMiddleware: {
             routes: [
                 {   
                     url: '/demo', 
-                    spec: demoPageSpec
+                    wireHandler: {$ref: 'demoPage'}
                 }
             ]
         },
