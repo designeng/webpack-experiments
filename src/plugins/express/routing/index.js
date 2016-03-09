@@ -6,6 +6,8 @@ import pipeline     from 'when/pipeline';
 import when         from "when";
 import chalk        from "chalk";
 
+import essentialWire from 'essential-wire';
+
 function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;
 
@@ -16,7 +18,7 @@ function routeMiddleware(resolver, facet, wire) {
             target.get(route.url, function (req, res) {
                 let pageSpec = route.spec;
 
-                wire(pageSpec).then(
+                essentialWire(pageSpec).then(
                     (context) => {
                         console.log("context.controller::news::::", context.controller.render());
                         res.status(200).end('-----')
