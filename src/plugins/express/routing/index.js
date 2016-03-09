@@ -43,8 +43,6 @@ function routeNotFoundMiddleware(resolver, facet, wire) {
     resolver.resolve(target);
 }
 
-
-// css/global.css
 function cssAssets(resolver, facet, wire) {
     const target = facet.target;
     const main = facet.options.main;
@@ -52,6 +50,18 @@ function cssAssets(resolver, facet, wire) {
     target.get("/css/global.css", function (req, res) {
         let result = fs.readFileSync(main);
         res.status(200).end(result);
+    });
+
+    resolver.resolve(target);
+}
+
+function imagesAssets(resolver, facet, wire) {
+    const target = facet.target;
+    const host = facet.options.host;
+
+    target.get("/images/*", function (req, res) {
+        console.log(">>>>>>", req.url);
+        res.status(200).end(req.url);
     });
 
     resolver.resolve(target);
@@ -68,6 +78,9 @@ export default function routeMiddlewarePlugin(options) {
             },
             cssAssets: {
                 'initialize:after': cssAssets
+            },
+            imagesAssets: {
+                'initialize:after': imagesAssets
             }
         }
     }
