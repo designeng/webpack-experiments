@@ -52,21 +52,6 @@ function cssAssets(resolver, facet, wire) {
     resolver.resolve(target);
 }
 
-function imagesAssets(resolver, facet, wire) {
-    const target = facet.target;
-    const host = facet.options.host;
-
-    target.get("/images/*", function (req, res) {
-        let lastFragment = req.url.replace('/images/', '')
-        console.log(">>>>>>", lastFragment);
-        axios.get(host + lastFragment)
-            .then(result => res.status(200).end(result))
-            .catch(error => res.status(500).end(error));
-    });
-
-    resolver.resolve(target);
-}
-
 export default function routeMiddlewarePlugin(options) {
     return {
         facets: {
@@ -78,9 +63,6 @@ export default function routeMiddlewarePlugin(options) {
             },
             cssAssets: {
                 'initialize:after': cssAssets
-            },
-            imagesAssets: {
-                'initialize:after': imagesAssets
             }
         }
     }

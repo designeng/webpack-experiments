@@ -35,9 +35,6 @@ export default {
         cssAssets: {
             main: './public/assets/global.css'
         },
-        // imagesAssets: {
-        //     host: 'https://dev.drive.ru/images/',
-        // },
         routeNotFoundMiddleware: {},
         server: {
             port            : process.env.PORT || 3000,
