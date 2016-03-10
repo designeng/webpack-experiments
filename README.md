@@ -7,3 +7,7 @@ npm i
 ```
 npm start
 ```
+##Smoke test
+```
+npm run smoke
+```
