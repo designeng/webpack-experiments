@@ -13,8 +13,8 @@ import {
 const preprocessNews = (items) => {
     return _.map(items, (item) => {
         return _.extend({}, item, {
-            time: moment(item.time).fromNow(),
-            caption: item.caption.replace(/\{(.*?)\}/, function(match, aText) {
+            time    : moment.unix(item.time).fromNow(),
+            caption : item.caption.replace(/\{(.*?)\}/, function(match, aText) {
                 return '<a href="' + item.url + '">' + aText + '</a>';
             })
         });
@@ -38,10 +38,10 @@ export default {
         request: {
             url: getNewsUrl(),
             params: {
-                count: 10
+                count: 15
             },
             output: {
-                skip: [4],
+                skip: [4, 5],
                 transform: preprocessNews
             }
         }
