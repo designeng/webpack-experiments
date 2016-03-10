@@ -1,7 +1,7 @@
 import wire         from 'essential-wire';
 import pipeline     from 'when/pipeline';
 
-import chai,  { expect }  from 'chai';
+import { expect }   from 'chai';
 import cheerio      from 'cheerio';
 
 import demoPageSpec from '../../src/pages/demo/page.spec';
