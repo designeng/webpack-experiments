@@ -4,21 +4,11 @@ import Handlebars   from 'handlebars';
 import moment       from 'moment';
 import _            from "underscore";
 
-import pageHbs   from '../../../public/assets/templates/page.hbs';
-import blockHbs  from '../../../public/assets/templates/block.hbs';
-
 import { 
     getNewsUrl, 
     getNewsBlockTemplateUrl, 
     getPageTemplateUrl
 } from '../../api/config';
-
-const getPage = (items, block, page) => {
-    return page({ items:  _.reduce(items, (result, item, index) => {
-        result = result + block(item);
-        return result;
-    }, '') });
-}
 
 const preprocessNews = (items) => {
     return _.map(items, (item) => {
@@ -29,6 +19,13 @@ const preprocessNews = (items) => {
             })
         });
     });
+}
+
+const getPage = (items, block, page) => {
+    return page({ items:  _.reduce(items, (result, item, index) => {
+        result = result + block(item);
+        return result;
+    }, '') });
 }
 
 export default {
@@ -44,36 +41,29 @@ export default {
                 count: 10
             },
             output: {
-                skip: [2],
+                skip: [4],
                 transform: preprocessNews
             }
         }
     },
 
-    // TODO: {{{ caption }}}
-    // newsBlockTemplate: {
-    //     request: {
-    //         url: getNewsBlockTemplateUrl(),
-    //         output: {
-    //             transform: Handlebars.compile
-    //         }
-    //     }
-    // },
+    newsBlockTemplate: {
+        request: {
+            url: getNewsBlockTemplateUrl(),
+            output: {
+                transform: Handlebars.compile
+            }
+        }
+    },
 
-    newsBlockTemplate: blockHbs,
-
-    // TODO: {{{ items }}}
-    // pageTemplate: {
-    //     request: {
-    //         url: getPageTemplateUrl(),
-    //         output: {
-    //             transform: Handlebars.compile
-    //         }
-    //     }
-    // },
-
-    // noop:
-    pageTemplate: pageHbs,
+    pageTemplate: {
+        request: {
+            url: getPageTemplateUrl(),
+            output: {
+                transform: Handlebars.compile
+            }
+        }
+    },
 
     page: {
         create: {
@@ -85,5 +75,4 @@ export default {
             ]
         }
     }
-
 }
