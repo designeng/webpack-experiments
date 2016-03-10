@@ -1,5 +1,5 @@
 {
-  "name": "webpack-experiments",
+  "name": "webpack-handlebars-SSR-demo",
   "version": "0.0.1",
   "description": "",
   "main": "runner.js",
