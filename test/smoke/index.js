@@ -4,8 +4,7 @@ import pipeline     from 'when/pipeline';
 import chai,  { expect }  from 'chai';
 import cheerio      from 'cheerio';
 
-import demoPageSpec from './pages/demo/page.spec';
-
+import demoPageSpec from '../../src/pages/demo/page.spec';
 
 const smokeTask = () => {
     return wire(demoPageSpec);

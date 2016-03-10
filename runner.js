@@ -5,5 +5,5 @@ if (process.env.NODE_ENV == 'server'){
 } else if (process.env.NODE_ENV == 'build'){
     require('./webpack.run');
 } else if (process.env.NODE_ENV == 'smoke'){
-    require('./src/smoke');
+    require('./test/smoke');
 }
