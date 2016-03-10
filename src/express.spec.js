@@ -4,6 +4,7 @@ import expressRoutingMiddlewarePlugin from './plugins/express/routing';
 
 // pages
 import demoPageSpec from './pages/demo/page.spec';
+import notFoundSpec from './pages/404/page.spec';
 
 export default {
     $plugins: [
@@ -19,6 +20,13 @@ export default {
         }
     },
 
+    notFoundPage: {
+        wire: {
+            spec: notFoundSpec,
+            defer: true
+        }
+    },
+
     app: {
         expressApplication: true,
         routeMiddleware: {
@@ -26,6 +34,10 @@ export default {
                 {   
                     url: '/demo', 
                     wireHandler: {$ref: 'demoPage'}
+                },
+                {   
+                    url: '/404error', 
+                    wireHandler: {$ref: 'notFoundPage'}
                 }
             ]
         },

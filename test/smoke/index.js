@@ -14,7 +14,7 @@ const smokeTask = () => {
 pipeline([smokeTask]).then(context => {
     let $ = cheerio.load(context.page);
     let collection = $('.nncard');
-    expect(collection.length).to.equal(13);
+    expect(collection.length).to.equal(5);
  
     let caption = $('#56e1472aec05c4436b000a16').find('h4').text();
     let str = 'Российский офис Subaru';

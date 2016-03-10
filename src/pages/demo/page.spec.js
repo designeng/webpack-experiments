@@ -40,10 +40,9 @@ export default {
         request: {
             url: getNewsUrl(),
             params: {
-                count: 15
+                count: 8
             },
             output: {
-                skip: [5, 6],
                 transform: preprocessNews
             }
         }

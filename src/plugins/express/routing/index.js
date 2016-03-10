@@ -1,5 +1,7 @@
 import fs from 'fs';
+import _  from 'underscore';
 import axios from 'axios';
+import url from 'url';
 
 import pipeline     from 'when/pipeline';
 import when         from "when";
@@ -14,8 +16,14 @@ function routeMiddleware(resolver, facet, wire) {
         routes.forEach(route => {
             target.get(route.url, function (req, res) {
                 let wireHandler = route.wireHandler;
+                let environment = {};
 
-                wireHandler().then(
+                if(route.url === '/404error') {
+                    const { query } = url.parse(req.url, true);
+                    _.extend(environment, { requestUrl: query.url });
+                }
+
+                wireHandler(environment).then(
                     (context) => {
                         res.status(200).end(context.page)
                     },
@@ -33,8 +41,7 @@ function routeNotFoundMiddleware(resolver, facet, wire) {
     const template = facet.options.template;
 
     target.get("/*", function (req, res) {
-        let result = template? template(req.url) : "Page not found:" + req.url
-        res.status(404).end(result);
+        res.redirect('/404error?url=' + req.url);
     });
 
     resolver.resolve(target);
