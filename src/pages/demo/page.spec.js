@@ -1,6 +1,5 @@
 import wireDebugPlugin  from 'essential-wire/source/debug';
 import requestPlugin    from '../../plugins/api/request';
-import handlebarsTemplatePlugin from '../../plugins/handlebars/template';
 import Handlebars   from 'handlebars';
 import moment       from 'moment';
 import _            from "underscore";
@@ -35,8 +34,7 @@ const preprocessNews = (items) => {
 export default {
     $plugins: [
         wireDebugPlugin,
-        requestPlugin,
-        handlebarsTemplatePlugin
+        requestPlugin
     ],
 
     news: {
@@ -51,15 +49,6 @@ export default {
             }
         }
     },
-
-    // preprocessedNews: {
-    //     create: {
-    //         module: preprocessNews,
-    //         args: [
-    //             {$ref: 'news'},
-    //         ]
-    //     }
-    // },
 
     // TODO: {{{ caption }}}
     // newsBlockTemplate: {
