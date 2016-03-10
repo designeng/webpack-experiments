@@ -43,7 +43,7 @@ export default {
                 count: 15
             },
             output: {
-                skip: [4, 5],
+                skip: [5, 6],
                 transform: preprocessNews
             }
         }
