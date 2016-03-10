@@ -9,5 +9,4 @@ const smokeTask = () => {
 
 pipeline([smokeTask]).then(context => {
     console.log("CTX::::", context);
-    context.controller.render()
 }).otherwise(error => console.error("ERROR:::", error));
