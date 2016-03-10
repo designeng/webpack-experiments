@@ -9,6 +9,12 @@ function resolve(resolver, options, response) {
         response = response['data'];
     }
 
+    if(output.skip) {
+        response = _.filter(response, (item, index) => {
+            return output.skip.indexOf(index) == -1;
+        })
+    }
+
     response = output && output.transform ? output.transform(response) : response;
     resolver.resolve(response);
 }

@@ -1,14 +1,23 @@
 import wireDebugPlugin  from 'essential-wire/source/debug';
 import requestPlugin    from '../../plugins/api/request';
 import handlebarsTemplatePlugin from '../../plugins/handlebars/template';
-import controller from './controller';
 import Handlebars   from 'handlebars';
+import _ from "underscore";
+
+import pageHbs   from '../../../public/assets/templates/page.hbs';
 
 import { 
     getNewsUrl, 
     getNewsBlockTemplateUrl, 
     getPageTemplateUrl 
 } from '../../api/config';
+
+const getPage = (items, block, page) => {
+    return page({ items:  _.reduce(items, (result, item, index) => {
+        result = result + block(item);
+        return result;
+    }, '') });
+}
 
 export default {
     $plugins: [
@@ -22,6 +31,9 @@ export default {
             url: getNewsUrl(),
             params: {
                 count: 10
+            },
+            output: {
+                skip: [0]
             }
         }
     },
@@ -35,23 +47,27 @@ export default {
         }
     },
 
-    pageTemplate: {
-        request: {
-            url: getPageTemplateUrl(),
-            output: {
-                transform: Handlebars.compile
-            }
-        }
-    },
+    // TODO: {{{ items }}}
+    // pageTemplate: {
+    //     request: {
+    //         url: getPageTemplateUrl(),
+    //         output: {
+    //             transform: Handlebars.compile
+    //         }
+    //     }
+    // },
 
-    controller: {
+    // noop:
+    pageTemplate: pageHbs,
+
+    page: {
         create: {
-            module: controller
-        },
-        properties: {
-            news: {$ref: 'news'},
-            pageTemplate: {$ref: 'pageTemplate'},
-            newsBlockTemplate: {$ref: 'newsBlockTemplate'}
+            module: getPage,
+            args: [
+                {$ref: 'news'},
+                {$ref: 'newsBlockTemplate'},
+                {$ref: 'pageTemplate'}
+            ]
         }
     }
 

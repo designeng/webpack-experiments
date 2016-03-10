@@ -1,0 +1,72 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Новости</title>
+        <meta name="viewport" content="width=1024">
+        <link rel="stylesheet" href="/css/global.css?1446569048">
+    </head>
+    <body>
+        <div class="hgr container-c site-wrapper-mobile">
+            <input type="checkbox" id="nav-mobile-trigger" class="nav-mobile-trigger">
+            <label for="nav-mobile-trigger" class="nav-mobile-trigger-label"></label>
+
+            <div id="header">
+                <a id="logo" href="/">ДРАЙВ</a>
+
+                <div id="nav">
+                    <ul class="spr nav-menu">
+                        <li><a href="/drive-tests">Наши<br> тест-драйвы</a></li>
+                        <li><a href="/companies">Каталог<br> компаний</a></li>
+                        <li><a href="/video">Наши<br> видео</a></li>
+                        <li><a href="/talk">Форумы<br> и комментарии</a></li>
+                        <li><a href="//www.drive2.ru">Сообщество<br>DRIVE2</a></li>
+                        <li class="nav-arr" data-action="topnav.misc" style="margin-right: -10px;"><span><i
+                                class="i arr"></i></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="container" class="hgr wrapper-mobile">
+                <div id="main" class="cf">
+                    <div class="spr page-top-shadow"></div>
+                    <h1 class="page-header">Новости</h1>
+
+                    <div class="col-1">
+                        <div class="nncard-list news-list">{{{ items }}}</div>
+                    </div>
+                </div>
+                <div class="page-footer">
+                    <div class="spr footer-spacer-mobile"></div>
+                    <span class="footer-copyright">© 2005–2016 ООО «Драйв», свидетельство о регистрации СМИ №ФС77-27653&nbsp;&nbsp;&nbsp;16+</span><br>
+
+                    <div class="noprint footer-navigation">
+                        <ul>
+                            <li><a href="/about">О Драйве</a></li>
+                            <li><a href="/ad">Размещение рекламы</a></li>
+                            <li><a href="/d2b">Драйв для бизнеса</a></li>
+                            <li><a href="/rewrite">Перепечатка материалов</a></li>
+                            <li><a href="/moderation">Политика модерации</a></li>
+                            <li><a href="/feedback">Обратная связь</a></li>
+                            <li><a href="#" data-viewport="mobile" id="desktop-switcher" class="viewport-switcher">Мобильная
+                                версия</a></li>
+                        </ul>
+                        Читайте ДРАЙВ в <a href="http://eepurl.com/bPK1R9"
+                                           onclick="window.open('http://eepurl.com/bPK1R9', 'popupwindow', 'scrollbars=yes,width=550,height=520');return false">почте</a>,
+                        <a href="/export/rss.xml">через RSS</a>,
+                        <a href="https://www.facebook.com/drive.ru">в Фейсбуке</a>, <a href="https://twitter.com/DriveRussia/">в
+                        Твиттере</a>, <a href="https://plus.google.com/+DriveRussia" rel="publisher">в Google+</a> или <a
+                            href="https://www.yandex.ru/?add=12217">в Яндексе</a>.
+                        <div class="page-footer-totop" data-action="footer.totop">
+                            <div>
+                                <span class="i"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="spr container-b"></div>
+        {{{ scripts }}}
+    </body>
+</html>

@@ -17,7 +17,7 @@ function routeMiddleware(resolver, facet, wire) {
 
                 wireHandler().then(
                     (context) => {
-                        res.status(200).end(context.controller.render())
+                        res.status(200).end(context.page)
                     },
                     (error) => res.status(500).end(error)
                 );
