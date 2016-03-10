@@ -10,7 +10,7 @@ import blockHbs  from '../../../public/assets/templates/block.hbs';
 import { 
     getNewsUrl, 
     getNewsBlockTemplateUrl, 
-    getPageTemplateUrl 
+    getPageTemplateUrl
 } from '../../api/config';
 
 const getPage = (items, block, page) => {
@@ -44,7 +44,7 @@ export default {
                 count: 10
             },
             output: {
-                skip: [0],
+                skip: [2],
                 transform: preprocessNews
             }
         }
