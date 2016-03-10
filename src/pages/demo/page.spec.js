@@ -1,14 +1,16 @@
 import wireDebugPlugin  from 'essential-wire/source/debug';
 import requestPlugin    from '../../plugins/api/request';
-import Handlebars   from 'handlebars';
-import moment       from 'moment';
-import _            from "underscore";
+import Handlebars       from 'handlebars';
+import moment           from 'moment';
+import _                from 'underscore';
 
 import { 
     getNewsUrl, 
     getNewsBlockTemplateUrl, 
     getPageTemplateUrl
 } from '../../api/config';
+
+moment.locale('ru');
 
 const preprocessNews = (items) => {
     return _.map(items, (item) => {
