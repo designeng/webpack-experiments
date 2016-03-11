@@ -7,10 +7,6 @@ import {
     getPageTemplateUrl
 } from '../../api/config';
 
-const getPage = (page, url) => {
-    return page({ items:  'Страница ' + url + ' не найдена'});
-}
-
 export default {
     $plugins: [
         wireDebugPlugin,
@@ -28,7 +24,9 @@ export default {
 
     page: {
         create: {
-            module: getPage,
+            module: (page, url) => {
+                return page({ items:  'Страница ' + url + ' не найдена'});
+            },
             args: [
                 {$ref: 'pageTemplate'},
                 {$ref: 'requestUrl'}
