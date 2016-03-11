@@ -3,11 +3,12 @@ import _ from 'underscore';
 
 function resolve(resolver, options, response) {
     let output = options.output;
-    if(_.isString(output)) {
-        response = response[output];
-    } else {
-        response = response['data'];
+
+    let property = output.property || 'data'
+    if(!_.isString(property)) {
+        throw new Error('[requestPlugin:] Property should be a string.');
     }
+    response = response[property];
 
     if(output.skip) {
         response = _.filter(response, (item, index) => {
@@ -23,7 +24,7 @@ function request(resolver, compDef, wire) {
     let url = compDef.options.url;
     let params = compDef.options.params;
     if (!url) {
-        throw new Error('Please set url to request factory.')
+        throw new Error('[requestPlugin:] Please set url to request factory.')
     }
     let method = compDef.options.method;
     const allowedMethods = ['get', 'delete', 'head', 'post', 'put', 'patch'];
