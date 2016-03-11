@@ -1,6 +1,5 @@
 import fs from 'fs';
 import _  from 'underscore';
-import axios from 'axios';
 import url from 'url';
 
 function routeMiddleware(resolver, facet, wire) {
