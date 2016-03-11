@@ -14,9 +14,9 @@ const smokeTask = () => {
 pipeline([smokeTask]).then(context => {
     let $ = cheerio.load(context.page);
     let collection = $('.nncard');
-    expect(collection.length).to.equal(5);
+    expect(collection.length).to.equal(8);
  
-    let caption = $('#56e1472aec05c4436b000a16').find('h4').text();
-    let str = 'Российский офис Subaru';
+    let caption = $('#56e2742cec05c4250e000882').find('h4').text();
+    let str = 'Новая Impreza';
     expect(caption.slice(0, str.length)).to.equal(str);
 }).otherwise(error => console.error(chalk.red("ERROR:::"), chalk.blue(error)));

@@ -1,6 +1,7 @@
 import wireDebugPlugin      from 'essential-wire/source/debug';
 import expressAppPlugin     from './plugins/express/application';
 import expressRoutingMiddlewarePlugin from './plugins/express/routing';
+import deferWire            from './decorators/deferWire';
 
 // pages
 import demoPageSpec from './pages/demo/page.spec';
@@ -13,19 +14,11 @@ export default {
         expressRoutingMiddlewarePlugin
     ],
 
-    demoPage: {
-        wire: {
-            spec: demoPageSpec,
-            defer: true
-        }
-    },
+    @deferWire({spec: demoPageSpec})
+    demoPage: {},
 
-    notFoundPage: {
-        wire: {
-            spec: notFoundSpec,
-            defer: true
-        }
-    },
+    @deferWire({spec: notFoundSpec})
+    notFoundPage: {},
 
     app: {
         expressApplication: true,
