@@ -2,34 +2,15 @@ import wireDebugPlugin   from 'essential-wire/source/debug';
 import requestPlugin     from '../../plugins/api/request';
 import performancePlugin from '../../plugins/performance';
 import Handlebars        from 'handlebars';
-import moment            from 'moment';
-import _                 from 'underscore';
+
+import preprocessNews    from './preprocessNews';
+import getPage           from './getPage';
 
 import { 
     getNewsUrl, 
     getNewsBlockTemplateUrl, 
     getPageTemplateUrl
 } from '../../api/config';
-
-moment.locale('ru');
-
-const preprocessNews = (items) => {
-    return _.map(items, (item) => {
-        return _.extend({}, item, {
-            time    : moment.unix(item.time).fromNow(),
-            caption : item.caption.replace(/\{(.*?)\}/, function(match, aText) {
-                return '<a href="' + item.url + '">' + aText + '</a>';
-            })
-        });
-    });
-}
-
-const getPage = (items, block, page) => {
-    return page({ items:  _.reduce(items, (result, item, index) => {
-        result = result + block(item);
-        return result;
-    }, '') });
-}
 
 export default {
     $plugins: [
