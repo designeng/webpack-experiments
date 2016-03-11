@@ -3,10 +3,6 @@ import _  from 'underscore';
 import axios from 'axios';
 import url from 'url';
 
-import pipeline     from 'when/pipeline';
-import when         from "when";
-import chalk        from "chalk";
-
 function routeMiddleware(resolver, facet, wire) {
     const target = facet.target;
 
@@ -38,7 +34,6 @@ function routeMiddleware(resolver, facet, wire) {
 
 function routeNotFoundMiddleware(resolver, facet, wire) {
     const target = facet.target;
-    const template = facet.options.template;
 
     target.get("/*", function (req, res) {
         res.redirect('/404error?url=' + req.url);

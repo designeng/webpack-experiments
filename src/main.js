@@ -1,5 +1,6 @@
 import wire         from 'essential-wire';
 import pipeline     from 'when/pipeline';
+import chalk        from 'chalk';
 
 import expressSpec  from './express.spec';
 
@@ -12,5 +13,5 @@ const expressTask = (context) => {
 }
 
 pipeline([expressTask]).then(context => {
-    timer.end();
+    console.log(chalk.blue("Wiring time: " + timer.end()));
 }).otherwise(error => console.error("ERROR:::", error));

@@ -1,7 +1,8 @@
-import wireDebugPlugin  from 'essential-wire/source/debug';
-import requestPlugin    from '../../plugins/api/request';
-import Handlebars       from 'handlebars';
-import _                from 'underscore';
+import wireDebugPlugin   from 'essential-wire/source/debug';
+import requestPlugin     from '../../plugins/api/request';
+import performancePlugin from '../../plugins/performance';
+import Handlebars        from 'handlebars';
+import _                 from 'underscore';
 
 import { 
     getPageTemplateUrl
@@ -10,7 +11,8 @@ import {
 export default {
     $plugins: [
         wireDebugPlugin,
-        requestPlugin
+        requestPlugin,
+        performancePlugin
     ],
 
     pageTemplate: {

@@ -1,8 +1,9 @@
-import wireDebugPlugin  from 'essential-wire/source/debug';
-import requestPlugin    from '../../plugins/api/request';
-import Handlebars       from 'handlebars';
-import moment           from 'moment';
-import _                from 'underscore';
+import wireDebugPlugin   from 'essential-wire/source/debug';
+import requestPlugin     from '../../plugins/api/request';
+import performancePlugin from '../../plugins/performance';
+import Handlebars        from 'handlebars';
+import moment            from 'moment';
+import _                 from 'underscore';
 
 import { 
     getNewsUrl, 
@@ -33,7 +34,8 @@ const getPage = (items, block, page) => {
 export default {
     $plugins: [
         wireDebugPlugin,
-        requestPlugin
+        requestPlugin,
+        performancePlugin
     ],
 
     news: {
