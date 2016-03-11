@@ -2,7 +2,7 @@ import _ from 'underscore';
 import moment from 'moment';
 moment.locale('ru');
 
-export default function preprocessNews(items) {
+export function preprocessNews(items) {
     return _.map(items, (item) => {
         return _.extend({}, item, {
             time    : moment.unix(item.time).fromNow(),
@@ -11,4 +11,11 @@ export default function preprocessNews(items) {
             })
         });
     });
+}
+
+export function getPage(items, block, page) {
+    return page({ items:  _.reduce(items, (result, item, index) => {
+        result = result + block(item);
+        return result;
+    }, '') });
 }

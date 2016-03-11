@@ -3,8 +3,7 @@ import requestPlugin     from '../../plugins/api/request';
 import performancePlugin from '../../plugins/performance';
 import Handlebars        from 'handlebars';
 
-import preprocessNews    from './preprocessNews';
-import getPage           from './getPage';
+import { preprocessNews, getPage } from './preprocessors';
 
 import { 
     getNewsUrl, 
