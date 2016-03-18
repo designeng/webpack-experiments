@@ -1,13 +1,36 @@
-import onePageSpec from './one.page.spec';
+import _ from 'underscore';
+import requestPlugin from './plugins/request';
+import preprocessPlugin from './plugins/preprocess';
+
+const doSmth = (x) => {
+    return _.extend(x, {a: 1});
+}
+
+const view = (data) => {
+    return JSON.stringify(data)
+}
 
 export default {
     $plugins: [
+        requestPlugin,
+        preprocessPlugin
     ],
-    test: 123,
-    onePageModule: {
-        wire: {
-            spec: onePageSpec,
-            defer: true
+    
+    data: {
+        request: {
+            endpoint: {}
+        },
+        preprocess: doSmth
+    },
+
+
+    view: {
+        create: {
+            module: view,
+            args: [
+                {$ref: 'data'}
+            ]
         }
     }
+
 }
