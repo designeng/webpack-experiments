@@ -7,6 +7,7 @@ const doSmth = (x) => {
 }
 
 const view = (data) => {
+    console.log("DATA::", data);
     return JSON.stringify(data)
 }
 

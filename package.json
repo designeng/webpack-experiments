@@ -6,8 +6,8 @@
   "scripts": {
     "clean": "rimraf -rf build",
     "build": "npm run clean & webpack --watch --config webpack.config.js",
-    "start": "node ./runner",
-    "test": "node ./build/bundle.js"
+    "start": "npm run server && webpack --watch --config webpack.config.js",
+    "server": "node ./server"
   },
   "keywords": [],
   "author": "Denis Savenok <denissavenok@gmail.com> (http://designeng.github.io/)",
@@ -15,6 +15,7 @@
   "dependencies": {
     "chalk": "^1.1.1",
     "essential-wire": "git://github.com/designeng/essential-wire",
+    "express": "^4.13.4",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
